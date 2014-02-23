@@ -9,3 +9,14 @@
 
 # Only for unit tests:
 .objc_class_name_CBL_Router
+
+# because CocoaHTTPServer is not a separate dependent library
+.objc_class_name_HTTPAsyncFileResponse
+.objc_class_name_HTTPConnection
+.objc_class_name_HTTPDataResponse
+.objc_class_name_HTTPFileResponse
+.objc_class_name_HTTPServer
+_OBJC_IVAR_$_HTTPConnection.httpResponse
+_OBJC_IVAR_$_HTTPConnection.config
+_OBJC_IVAR_$_HTTPConnection.request
+_OBJC_IVAR_$_HTTPServer.connectionClass

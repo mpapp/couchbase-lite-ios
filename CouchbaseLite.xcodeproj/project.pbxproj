@@ -114,15 +114,14 @@
 		2753157214ACEFC90065964D /* DDNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155314ACEFC90065964D /* DDNumber.h */; };
 		2753157614ACEFC90065964D /* DDRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155514ACEFC90065964D /* DDRange.h */; };
 		2753157A14ACEFC90065964D /* HTTPAuthenticationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155714ACEFC90065964D /* HTTPAuthenticationRequest.h */; };
-		2753157E14ACEFC90065964D /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155914ACEFC90065964D /* HTTPConnection.h */; };
+		2753157E14ACEFC90065964D /* HTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155914ACEFC90065964D /* HTTPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2753158214ACEFC90065964D /* HTTPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155B14ACEFC90065964D /* HTTPLogging.h */; };
 		2753158414ACEFC90065964D /* HTTPMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155C14ACEFC90065964D /* HTTPMessage.h */; };
-		2753158814ACEFC90065964D /* HTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155E14ACEFC90065964D /* HTTPResponse.h */; };
+		2753158814ACEFC90065964D /* HTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155E14ACEFC90065964D /* HTTPResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2753158A14ACEFC90065964D /* HTTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155F14ACEFC90065964D /* HTTPServer.h */; };
-		2753158E14ACEFC90065964D /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156214ACEFC90065964D /* HTTPAsyncFileResponse.h */; };
-		2753159214ACEFC90065964D /* HTTPDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156414ACEFC90065964D /* HTTPDataResponse.h */; };
+		2753159214ACEFC90065964D /* HTTPDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156414ACEFC90065964D /* HTTPDataResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2753159614ACEFC90065964D /* HTTPDynamicFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156614ACEFC90065964D /* HTTPDynamicFileResponse.h */; };
-		2753159A14ACEFC90065964D /* HTTPFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156814ACEFC90065964D /* HTTPFileResponse.h */; };
+		2753159A14ACEFC90065964D /* HTTPFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156814ACEFC90065964D /* HTTPFileResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2753159E14ACEFC90065964D /* HTTPRedirectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156A14ACEFC90065964D /* HTTPRedirectResponse.h */; };
 		275315BC14ACF0330065964D /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B114ACF0330065964D /* DDAbstractDatabaseLogger.h */; };
 		275315C014ACF0330065964D /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B314ACF0330065964D /* DDASLLogger.h */; };
@@ -349,7 +348,7 @@
 		27846FBD15D475DF0030122F /* MYStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FB815D475DF0030122F /* MYStreamUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27846FBE15D475DF0030122F /* MYStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FB815D475DF0030122F /* MYStreamUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27846FF115D5C8250030122F /* APITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FF015D5C8250030122F /* APITests.m */; };
-		2785BE9D16BC87EA00A3E881 /* CBL_URLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706461487584300F0F099 /* CBL_URLProtocol.h */; };
+		2785BE9D16BC87EA00A3E881 /* CBL_URLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706461487584300F0F099 /* CBL_URLProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2785BE9E16BC87ED00A3E881 /* CBL_Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706431486BE7100F0F099 /* CBL_Router.h */; };
 		278B0CA0152A8B1900577747 /* CBLCanonicalJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 278B0C9E152A8B1900577747 /* CBLCanonicalJSON.h */; };
 		278B0CA1152A8B1900577747 /* CBLCanonicalJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 278B0C9F152A8B1900577747 /* CBLCanonicalJSON.m */; };
@@ -612,6 +611,8 @@
 		27FFE20617BBF20D0040AE60 /* CBLReplicator_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821BBB149001B20099B373 /* CBLReplicator_Tests.m */; };
 		27FFE20A17BD28080040AE60 /* CBL_Replicator+Backgrounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */; };
 		27FFE20B17BD28080040AE60 /* CBL_Replicator+Backgrounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */; };
+		5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156314ACEFC90065964D /* HTTPAsyncFileResponse.m */; };
+		5FE1842018BA2E2500C733A9 /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156214ACEFC90065964D /* HTTPAsyncFileResponse.h */; };
 		792867C0178DE01900248AF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0745C11CD50A600E9A2AB /* Foundation.framework */; };
 		792867D0178DE03E00248AF0 /* CBLJSFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 792867CC178DE03E00248AF0 /* CBLJSFunction.m */; };
 		792867D1178DE03E00248AF0 /* CBLJSViewCompiler_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 792867CD178DE03E00248AF0 /* CBLJSViewCompiler_Test.m */; };
@@ -2452,7 +2453,6 @@
 				2753158814ACEFC90065964D /* HTTPResponse.h in Headers */,
 				2753158A14ACEFC90065964D /* HTTPServer.h in Headers */,
 				27B945B217692E2000B2DF2D /* CBLModel_Internal.h in Headers */,
-				2753158E14ACEFC90065964D /* HTTPAsyncFileResponse.h in Headers */,
 				2753159214ACEFC90065964D /* HTTPDataResponse.h in Headers */,
 				2753159614ACEFC90065964D /* HTTPDynamicFileResponse.h in Headers */,
 				2753159A14ACEFC90065964D /* HTTPFileResponse.h in Headers */,
@@ -2526,6 +2526,7 @@
 				2753160C14ACFC2A0065964D /* CBLHTTPConnection.h in Headers */,
 				27E11F0D14ACFFC60006B340 /* CBLHTTPServer.h in Headers */,
 				27E11F1014AD15940006B340 /* CBLHTTPResponse.h in Headers */,
+				5FE1842018BA2E2500C733A9 /* HTTPAsyncFileResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3230,6 +3231,7 @@
 				27B678B71804B62500B06D11 /* CBLHTTPServer.m in Sources */,
 				27E2E61815993CB6005B9234 /* CBL_URLProtocol.m in Sources */,
 				2767D7DF14C8D3E500ED0F26 /* Logging.m in Sources */,
+				5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */,
 				2767D7E014C8D3EA00ED0F26 /* CollectionUtils.m in Sources */,
 				279CE39014D1EDA0009F3FA6 /* Test.m in Sources */,
 				27F3A5D015ED427200263663 /* MYRegexUtils.m in Sources */,
