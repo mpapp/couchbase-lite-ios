@@ -326,6 +326,9 @@
 
 #pragma mark - PROPERTIES:
 
+- (NSMutableDictionary*) properties {
+    return _properties;
+}
 
 - (NSDictionary*) currentProperties {
     NSMutableDictionary* properties = [_document.properties mutableCopy];
@@ -333,7 +336,7 @@
         properties = [[NSMutableDictionary alloc] init];
     for (NSString* key in _changedNames)
         [properties setValue: _properties[key] forKey: key];
-    return properties;
+    return [properties copy];
 }
 
 
@@ -364,7 +367,6 @@
     return value;
 }
 
-
 - (NSDictionary*) propertiesToSave {
     NSMutableDictionary* properties = [_document.properties mutableCopy];
     if (!properties)
@@ -381,6 +383,7 @@
 - (void) cacheValue: (id)value ofProperty: (NSString*)property changed: (BOOL)changed {
     if (!_properties)
         _properties = [[NSMutableDictionary alloc] init];
+    
     [_properties setValue: value forKey: property];
     if (changed) {
         if (!_changedNames)
