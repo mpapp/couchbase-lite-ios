@@ -434,6 +434,9 @@
     }
 }
 
+- (id) getUnsavedValueOfProperty: (NSString*)property {
+    return _properties[property];
+}
 
 - (id) getValueOfProperty: (NSString*)property {
     id value = _properties[property];

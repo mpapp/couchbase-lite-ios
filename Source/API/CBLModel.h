@@ -97,6 +97,9 @@
     You can use this for document properties that you haven't added @@property declarations for. */
 - (id) getValueOfProperty: (NSString*)property                          __attribute__((nonnull));
 
+/** Gets a current, unsaved value of a property by name. */
+- (id) getUnsavedValueOfProperty: (NSString*)property                   __attribute__((nonnull));
+
 /** Sets a property by name.
     You can use this for document properties that you haven't added @@property declarations for. */
 - (BOOL) setValue: (id)value
