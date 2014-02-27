@@ -613,6 +613,7 @@
 		27FFE20B17BD28080040AE60 /* CBL_Replicator+Backgrounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */; };
 		5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156314ACEFC90065964D /* HTTPAsyncFileResponse.m */; };
 		5FE1842018BA2E2500C733A9 /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156214ACEFC90065964D /* HTTPAsyncFileResponse.h */; };
+		5FE1860E18BAA31800C733A9 /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F0751111CDC7F900E9A2AB /* Logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		792867C0178DE01900248AF0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0745C11CD50A600E9A2AB /* Foundation.framework */; };
 		792867D0178DE03E00248AF0 /* CBLJSFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 792867CC178DE03E00248AF0 /* CBLJSFunction.m */; };
 		792867D1178DE03E00248AF0 /* CBLJSViewCompiler_Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 792867CD178DE03E00248AF0 /* CBLJSViewCompiler_Test.m */; };
@@ -2480,6 +2481,7 @@
 				279C7E2E14F424090004A1E8 /* CBLSequenceMap.h in Headers */,
 				27ADC079152502EE001ABC1D /* CBLMultipartDocumentReader.h in Headers */,
 				277B5DC71821A8B60088881E /* yajl_common.h in Headers */,
+				5FE1860E18BAA31800C733A9 /* Logging.h in Headers */,
 				278B0CA0152A8B1900577747 /* CBLCanonicalJSON.h in Headers */,
 				278E4DD81562B40B00DDCEF9 /* MYURLUtils.h in Headers */,
 				277EF41117F4DF3700F7B7F7 /* fts3Int.h in Headers */,
@@ -3847,7 +3849,7 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
@@ -3876,7 +3878,7 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
@@ -4249,7 +4251,7 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
