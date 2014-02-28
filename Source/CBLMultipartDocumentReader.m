@@ -29,6 +29,9 @@
 
 
 @implementation CBLMultipartDocumentReader
+{
+    __strong id _retainSelf; // Used to keep this object alive by keeping a reference to self
+}
 
 
 + (NSDictionary*) readData: (NSData*)data
@@ -172,14 +175,7 @@
 {
     if ([self setHeaders: headers]) {
         LogTo(SyncVerbose, @"%@: Reading from input stream...", self);
-        
-        __block id slf = self;
-        _completionBlock = ^(CBLMultipartDocumentReader *reader)
-        {
-            completionBlock(reader);
-            slf = nil;
-        };
-        
+       _retainSelf = self;  // balanced by release in -finishAsync:
         _completionBlock = [completionBlock copy];
         [stream open];
         stream.delegate = self;
@@ -230,7 +226,7 @@
         [self finish];
     _completionBlock(self);
     _completionBlock = nil;
-      // balances -retain in -readStream:
+    _retainSelf = nil;  // clears the reference acquired in -readStream:
 }
 
 
