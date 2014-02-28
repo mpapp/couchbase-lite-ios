@@ -172,7 +172,6 @@
 {
     if ([self setHeaders: headers]) {
         LogTo(SyncVerbose, @"%@: Reading from input stream...", self);
-        // balanced by release in -finishAsync:
         
         __block id slf = self;
         _completionBlock = ^(CBLMultipartDocumentReader *reader)
