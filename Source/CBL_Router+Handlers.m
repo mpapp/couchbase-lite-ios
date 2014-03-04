@@ -168,6 +168,15 @@
     return [db deleteDatabase: NULL] ? kCBLStatusOK : kCBLStatusNotFound;
 }
 
+- (CBLStatus)do_OPTIONS:(CBLDatabase *)db
+{
+    return kCBLStatusOK;
+}
+
+- (CBLStatus)do_OPTIONS_changes:(CBLDatabase *)db
+{
+    return kCBLStatusOK;
+}
 
 - (CBLStatus) do_POST_purge: (CBLDatabase*)db {
     // <http://wiki.apache.org/couchdb/Purge_Documents>
@@ -643,6 +652,11 @@ static NSArray* parseJSONRevArrayQuery(NSString* queryStr) {
 }
 
 - (CBLStatus)do_OPTIONS: (CBLDatabase *)db docID:(NSString *)docID {
+    return kCBLStatusOK;
+}
+
+- (CBLStatus)do_OPTIONS:(CBLDatabase *)db designDocID:(NSString *)docID view:(NSString *)view
+{
     return kCBLStatusOK;
 }
 
