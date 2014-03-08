@@ -127,8 +127,6 @@ static CBLManager* sInstance;
     if (!self)
         Warn(@"Failed to create CBLManager: %@", error);
     
-    _customHTTPHeaders = [NSMutableDictionary dictionary];
-    
     return self;
 }
 
@@ -177,6 +175,7 @@ static CBLManager* sInstance;
         _strongShared = _shared;
         _databases = [[NSMutableDictionary alloc] init];
         _replications = [[NSMutableArray alloc] init];
+        _customHTTPHeaders = [NSMutableDictionary dictionary];
         LogTo(CBLDatabase, @"Created %@", self);
     }
     return self;
