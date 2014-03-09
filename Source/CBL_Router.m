@@ -355,6 +355,8 @@ static NSArray* splitPath( NSURL* url ) {
     }
     
     NSString* docID = nil;
+    BOOL isView = NO;
+    
     if (_db && pathLen > 1) {
         // Make sure database exists, then interpret doc name:
         CBLStatus status = [self openDB];
@@ -377,6 +379,13 @@ static NSArray* splitPath( NSURL* url ) {
         } else if ([name hasPrefix: @"_design/"] || [name hasPrefix: @"_local/"]) {
             // This is also a document, just with a URL-encoded "/"
             docID = name;
+            
+        } else if ([name isEqualToString:@"_view"]) {
+            if (pathLen <= 2)
+                return kCBLStatusBadRequest;
+            docID = [[_path subarrayWithRange:NSMakeRange(2, _path.count - 2)] componentsJoinedByString:@"/"];
+            isView = YES;
+            
         } else {
             // Special document name like "_all_docs":
             [message insertString: name atIndex: message.length-1]; // add to 1st component of msg
@@ -386,11 +395,16 @@ static NSArray* splitPath( NSURL* url ) {
         }
 
         if (docID)
-            [message appendString: @"docID:"];
+        {
+            if (isView)
+                [message appendString:@"view:"];
+            else
+                [message appendString: @"docID:"];
+        }
     }
     
     NSString* attachmentName = nil;
-    if (docID && pathLen > 2) {
+    if (docID && !isView && pathLen > 2) {
         // Interpret attachment name:
         attachmentName = _path[2];
         if ([attachmentName hasPrefix: @"_"] && [docID hasPrefix: @"_design/"]) {

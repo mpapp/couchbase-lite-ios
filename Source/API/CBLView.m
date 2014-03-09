@@ -150,6 +150,7 @@
 
 
 - (CBLQuery*) createQuery {
+    NSLog(@"Creating query for view %@", self.name);
     return [[CBLQuery alloc] initWithDatabase: self.database view: self];
 }
 

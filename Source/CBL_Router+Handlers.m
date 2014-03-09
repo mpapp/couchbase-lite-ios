@@ -655,11 +655,6 @@ static NSArray* parseJSONRevArrayQuery(NSString* queryStr) {
     return kCBLStatusOK;
 }
 
-- (CBLStatus)do_OPTIONS:(CBLDatabase *)db designDocID:(NSString *)docID view:(NSString *)view
-{
-    return kCBLStatusOK;
-}
-
 - (CBLStatus) do_GET: (CBLDatabase*)db docID: (NSString*)docID {
     // http://wiki.apache.org/couchdb/HTTP_Document_API#GET
     BOOL isLocalDoc = [docID hasPrefix: @"_local/"];
@@ -1056,7 +1051,10 @@ static NSArray* parseJSONRevArrayQuery(NSString* queryStr) {
 
 
 - (CBLStatus) queryDesignDoc: (NSString*)designDoc view: (NSString*)viewName keys: (NSArray*)keys {
-    NSString* tdViewName = $sprintf(@"%@/%@", designDoc, viewName);
+    NSString* tdViewName = viewName;
+    if (designDoc)
+        tdViewName = $sprintf(@"%@/%@", designDoc, viewName);
+    
     CBLStatus status;
     CBLView* view = [_db compileViewNamed: tdViewName status: &status];
     if (!view)
@@ -1096,6 +1094,19 @@ static NSArray* parseJSONRevArrayQuery(NSString* queryStr) {
     return kCBLStatusOK;
 }
 
+- (CBLStatus)do_OPTIONS:(CBLDatabase *)db view:(NSString *)view
+{
+    return kCBLStatusOK;
+}
+
+- (CBLStatus) do_GET: (CBLDatabase*)db view: (NSString*)viewName {
+    return [self queryDesignDoc:nil view: viewName keys: nil];
+}
+
+- (CBLStatus)do_OPTIONS:(CBLDatabase *)db designDocID:(NSString *)docID view:(NSString *)view
+{
+    return kCBLStatusOK;
+}
 
 - (CBLStatus) do_GET: (CBLDatabase*)db designDocID: (NSString*)designDoc view: (NSString*)viewName {
     return [self queryDesignDoc: designDoc view: viewName keys: nil];
