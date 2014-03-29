@@ -11,6 +11,7 @@
 #import "CouchbaseLitePrivate.h"
 #import "CBLInternal.h"
 #import "Test.h"
+#import <CommonCrypto/CommonCryptor.h>
 
 
 #if DEBUG
@@ -19,6 +20,53 @@
 // This db will get deleted and overwritten during every test.
 #define kPushThenPullDBName @"cbl_replicator_pushpull"
 #define kNDocuments 1000
+// This one too.
+#define kEncodedDBName @"cbl_replicator_encoding"
+
+
+@interface CBL_ReplicationObserverHelper : NSObject
+- (instancetype) initWithReplication: (CBLReplication*)repl;
+@property NSUInteger expectedChangesCount;
+@end
+
+
+@implementation CBL_ReplicationObserverHelper
+{
+    CBLReplication* _repl;
+}
+
+@synthesize expectedChangesCount=_expectedChangesCount;
+
+- (instancetype) initWithReplication: (CBLReplication*)repl {
+    self = [super init];
+    if (self) {
+        _repl = repl;
+        [[NSNotificationCenter defaultCenter] addObserver: self
+                                                 selector: @selector(replChanged:)
+                                                     name: kCBLReplicationChangeNotification
+                                                   object: _repl];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver: self];
+}
+
+- (void) replChanged: (NSNotification*)n {
+    AssertEq(n.object, _repl);
+    Log(@"Replication status=%d; completedChangesCount=%u; changesCount=%u",
+        _repl.status, _repl.completedChangesCount, _repl.changesCount);
+    CAssert(_repl.completedChangesCount <= _repl.changesCount);
+    if (_repl.status == kCBLReplicationStopped) {
+        AssertEq(_repl.completedChangesCount, _repl.changesCount);
+        if (_expectedChangesCount > 0)
+            AssertEq(_repl.changesCount, _expectedChangesCount);
+    }
+}
+
+@end
+
 
 
 static CBLDatabase* createEmptyManagerAndDb(void) {
@@ -30,8 +78,10 @@ static CBLDatabase* createEmptyManagerAndDb(void) {
 }
 
 
-static void runReplication(CBLReplication* repl) {
+static void runReplication(CBLReplication* repl, unsigned expectedChangesCount) {
     Log(@"Waiting for %@ to finish...", repl);
+    CBL_ReplicationObserverHelper *observer = [[CBL_ReplicationObserverHelper alloc] initWithReplication: repl];
+    observer.expectedChangesCount = expectedChangesCount;
     bool started = false, done = false;
     [repl start];
     CFAbsoluteTime lastTime = 0;
@@ -54,6 +104,7 @@ static void runReplication(CBLReplication* repl) {
     }
     Log(@"...replicator finished. mode=%d, progress %u/%u, error=%@",
         repl.status, repl.completedChangesCount, repl.changesCount, repl.lastError);
+    observer = nil;
 }
 
 
@@ -134,7 +185,7 @@ TestCase(RunPushReplication) {
     repl.createTarget = YES;
     [repl start];
     CAssertEqual(db.allReplications, @[repl]);
-    runReplication(repl);
+    runReplication(repl, kNDocuments);
     AssertNil(repl.lastError);
     CAssertEqual(db.allReplications, @[]);
     [db.manager close];
@@ -152,7 +203,8 @@ TestCase(RunPullReplication) {
 
     Log(@"Pulling...");
     CBLReplication* repl = [db createPullReplication: remoteDbURL];
-    runReplication(repl);
+
+    runReplication(repl, kNDocuments);
     AssertNil(repl.lastError);
 
     Log(@"Verifying documents...");
@@ -172,7 +224,7 @@ TestCase(RunReplicationWithError) {
 
     // Create a replication:
     CBLReplication* r1 = [db createPullReplication: fakeRemoteURL];
-    runReplication(r1);
+    runReplication(r1, 0);
 
     // It should have failed with a 404:
     CAssertEq(r1.status, kCBLReplicationStopped);
@@ -213,9 +265,67 @@ TestCase(ReplicationChannelsProperty) {
 }
 
 
+static UInt8 sEncryptionKey[kCCKeySizeAES256];
+static UInt8 sEncryptionIV[kCCBlockSizeAES128];
+
+
+// Tests the CBLReplication.propertiesTransformationBlock API, by encrypting the document's
+// "secret" property with AES-256 as it's pushed to the server. The encrypted data is stored in
+// an attachment named "(encrypted)".
+TestCase(ReplicationWithEncoding) {
+    RequireTestCase(RunPushReplication);
+    NSURL* remoteDbURL = RemoteTestDBURL(kEncodedDBName);
+    if (!remoteDbURL) {
+        Warn(@"Skipping test ReplicationWithEncoding (no remote test DB URL)");
+        return;
+    }
+    DeleteRemoteDB(remoteDbURL);
+
+    Log(@"Creating document...");
+    CBLDatabase* db = createEmptyManagerAndDb();
+    CBLDocument* doc = db[@"seekrit"];
+    [doc putProperties: @{@"secret": @"Attack at dawn"} error: NULL];
+
+    Log(@"Pushing...");
+    CBLReplication* repl = [db createPushReplication: remoteDbURL];
+    repl.createTarget = YES;
+
+    SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionKey), sEncryptionKey);
+    SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionIV), sEncryptionIV);
+
+    repl.propertiesTransformationBlock = ^NSDictionary*(NSDictionary* props) {
+        NSData* cleartext = [props[@"secret"] dataUsingEncoding: NSUTF8StringEncoding];
+        Assert(cleartext);
+        NSMutableData* ciphertext = [NSMutableData dataWithLength: cleartext.length + 128];
+        size_t encryptedLength;
+        CCCryptorStatus status = CCCrypt(kCCEncrypt, kCCAlgorithmAES, kCCOptionPKCS7Padding,
+                                         sEncryptionKey, sizeof(sEncryptionKey), sEncryptionIV,
+                                         cleartext.bytes, cleartext.length,
+                                         ciphertext.mutableBytes, ciphertext.length, &encryptedLength);
+        AssertEq(status, kCCSuccess);
+        Assert(encryptedLength > 0);
+        ciphertext.length = encryptedLength;
+        Log(@"Ciphertext = %@", ciphertext);
+
+        NSMutableDictionary* nuProps = [props mutableCopy];
+        [nuProps removeObjectForKey: @"secret"];
+        nuProps[@"_attachments"] = @{@"(encrypted)": @{@"data":[ciphertext base64Encoding]}};
+        Log(@"Encoded document = %@", nuProps);
+        return nuProps;
+    };
+
+    [repl start];
+    runReplication(repl, 1);
+    AssertNil(repl.lastError);
+    [db.manager close];
+}
+
+
+// Tests the CBLReplication.propertiesTransformationBlock API, by decrypting the encrypted
+// documents produced by ReplicationWithEncoding.
 TestCase(ReplicationWithDecoding) {
-    RequireTestCase(RunPullReplication);
-    NSURL* remoteDbURL = RemoteTestDBURL(kPushThenPullDBName);
+    RequireTestCase(ReplicationWithEncoding);
+    NSURL* remoteDbURL = RemoteTestDBURL(kEncodedDBName);
     if (!remoteDbURL) {
         Warn(@"Skipping test ReplicationWithDecoding (no remote test DB URL)");
         return;
@@ -227,23 +337,47 @@ TestCase(ReplicationWithDecoding) {
     repl.propertiesTransformationBlock = ^NSDictionary*(NSDictionary* props) {
         Assert(props.cbl_id);
         Assert(props.cbl_rev);
-        NSInteger index = [props[@"index"] integerValue];
-        if (index % 2)
+        NSDictionary* encrypted = [props[@"_attachments"] objectForKey: @"(encrypted)"];
+        if (!encrypted)
             return props;
+
+        NSData* ciphertext;
+        NSString* ciphertextStr = $castIf(NSString, encrypted[@"data"]);
+        if (ciphertextStr) {
+            // Attachment was inline:
+            ciphertext = [[NSData alloc] initWithBase64EncodedString: ciphertextStr options: 0];
+        } else {
+            // The replicator is kind enough to add a temporary "file" property that points to
+            // the downloaded attachment:
+            NSString* filePath = $castIf(NSString, encrypted[@"file"]);
+            Assert(filePath);
+            ciphertext = [NSData dataWithContentsOfFile: filePath];
+        }
+        Assert(ciphertext);
+        NSMutableData* cleartext = [NSMutableData dataWithLength: ciphertext.length];
+
+        size_t decryptedLength;
+        CCCryptorStatus status = CCCrypt(kCCDecrypt, kCCAlgorithmAES, kCCOptionPKCS7Padding,
+                                         sEncryptionKey, sizeof(sEncryptionKey), sEncryptionIV,
+                                         ciphertext.bytes, ciphertext.length,
+                                         cleartext.mutableBytes, cleartext.length, &decryptedLength);
+        AssertEq(status, kCCSuccess);
+        Assert(decryptedLength > 0);
+        cleartext.length = decryptedLength;
+        Log(@"Cleartext = %@", cleartext);
+        NSString* cleartextStr = [[NSString alloc] initWithData: cleartext encoding: NSUTF8StringEncoding];
+
         NSMutableDictionary* nuProps = [props mutableCopy];
-        nuProps[@"index"] = @(-index);
+        nuProps[@"secret"] = cleartextStr;
         return nuProps;
     };
-    runReplication(repl);
+    runReplication(repl, 1);
     AssertNil(repl.lastError);
 
-    Log(@"Verifying documents...");
-    for (int i = 1; i <= kNDocuments; i++) {
-        CBLDocument* doc = db[ $sprintf(@"doc-%d", i) ];
-        int expectedIndex = (i%2) ? i : -i;
-        AssertEqual(doc[@"index"], @(expectedIndex));
-        AssertEqual(doc[@"bar"], $false);
-    }
+    // Finally, verify the decryption:
+    CBLDocument* doc = db[@"seekrit"];
+    NSString* plans = doc[@"secret"];
+    AssertEqual(plans, @"Attack at dawn");
     [db.manager close];
 }
 

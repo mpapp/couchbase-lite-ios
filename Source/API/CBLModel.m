@@ -144,6 +144,7 @@
     if (!rev)
         return YES;
     LogTo(CBLModel, @"%@ Deleting document", self);
+    [self willSave: nil];
     NSDictionary* properties = self.propertiesToSaveForDeletion;
     if (!properties) {
         properties = @{@"_deleted": $true};
@@ -402,7 +403,8 @@
 - (NSDictionary*) propertiesToSave {
     NSMutableDictionary* properties = [_document.properties mutableCopy];
     if (!properties)
-        properties = [[NSMutableDictionary alloc] init];
+        properties = [NSMutableDictionary dictionaryWithObject: _document.documentID
+                                                        forKey: @"_id"];
     for (NSString* key in _changedNames) {
         id value = _properties[key];
         [properties setValue: [self externalizePropertyValue: value] forKey: key];
@@ -562,17 +564,10 @@
 }
 
 - (void) removeAttachmentNamed: (NSString*)name {
-    [self addAttachment: nil named: name];
+    if (_changedAttachments[name] || _document.currentRevision.attachmentMetadata[name]) {
+        [self _addAttachment: nil named: name];
+    }
 }
-
-#ifdef CBL_DEPRECATED
-- (void) addAttachment: (CBLAttachment*)attachment named: (NSString*)name {
-    Assert(!attachment.name, @"Attachment already attached to another revision");
-    if (attachment == [self attachmentNamed: name])
-        return;
-    [self _addAttachment: attachment named: name];
-}
-#endif
 
 
 - (NSDictionary*) attachmentDataToSave {
@@ -591,7 +586,7 @@
         else
             [nuAttach removeObjectForKey: name];
     }
-    return nuAttach;
+    return nuAttach.count ? nuAttach : nil;
 }
 
 
