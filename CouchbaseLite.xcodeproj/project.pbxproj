@@ -110,6 +110,8 @@
 		274C3919149E6B0900A5E89B /* EmptyAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 274C3918149E6B0900A5E89B /* EmptyAppDelegate.m */; };
 		274C391E149FAE0000A5E89B /* CBLDatabase+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 274C391B149FAE0000A5E89B /* CBLDatabase+Attachments.m */; };
 		274C391F149FAE0000A5E89B /* CBLDatabase+Attachments.m in Sources */ = {isa = PBXBuildFile; fileRef = 274C391B149FAE0000A5E89B /* CBLDatabase+Attachments.m */; };
+		275072A418E49BEA00A80C5A /* CBLIncrementalStore.h in Copy Extras */ = {isa = PBXBuildFile; fileRef = AA1776B61857ADDB00CB01A3 /* CBLIncrementalStore.h */; };
+		275072A518E49BEA00A80C5A /* CBLIncrementalStore.m in Copy Extras */ = {isa = PBXBuildFile; fileRef = AA1776B71857ADDB00CB01A3 /* CBLIncrementalStore.m */; };
 		2751D4E4151BAE7000F7FD57 /* CBLManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 2751D4E2151BAE7000F7FD57 /* CBLManager+Internal.h */; };
 		2753157214ACEFC90065964D /* DDNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155314ACEFC90065964D /* DDNumber.h */; };
 		2753157614ACEFC90065964D /* DDRange.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753155514ACEFC90065964D /* DDRange.h */; };
@@ -123,6 +125,11 @@
 		2753159614ACEFC90065964D /* HTTPDynamicFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156614ACEFC90065964D /* HTTPDynamicFileResponse.h */; };
 		2753159A14ACEFC90065964D /* HTTPFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156814ACEFC90065964D /* HTTPFileResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2753159E14ACEFC90065964D /* HTTPRedirectResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156A14ACEFC90065964D /* HTTPRedirectResponse.h */; };
+		275315BC14ACF0330065964D /* DDAbstractDatabaseLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B114ACF0330065964D /* DDAbstractDatabaseLogger.h */; };
+		275315C014ACF0330065964D /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B314ACF0330065964D /* DDASLLogger.h */; };
+		275315C414ACF0330065964D /* DDFileLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B514ACF0330065964D /* DDFileLogger.h */; };
+		275315C814ACF0330065964D /* DDLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B714ACF0330065964D /* DDLog.h */; };
+		275315CC14ACF0330065964D /* DDTTYLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 275315B914ACF0330065964D /* DDTTYLogger.h */; };
 		275315DC14ACF0A20065964D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 275315DA14ACF0A20065964D /* InfoPlist.strings */; };
 		275315E014ACF0A20065964D /* CBLListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 275315DF14ACF0A20065964D /* CBLListener.m */; };
 		275315E514ACF1130065964D /* DDNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155414ACEFC90065964D /* DDNumber.m */; };
@@ -132,6 +139,7 @@
 		275315E914ACF1130065964D /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155D14ACEFC90065964D /* HTTPMessage.m */; };
 		275315EA14ACF1130065964D /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156014ACEFC90065964D /* HTTPServer.m */; settings = {COMPILER_FLAGS = "-Wno-undeclared-selector"; }; };
 		275315EC14ACF1130065964D /* HTTPDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156514ACEFC90065964D /* HTTPDataResponse.m */; };
+		275315F214ACF1130065964D /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 275315B814ACF0330065964D /* DDLog.m */; };
 		275315F314ACF1C20065964D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27C7069C148864BA00F0F099 /* Foundation.framework */; };
 		275315F514ACF1CC0065964D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275315F414ACF1CC0065964D /* Security.framework */; };
 		275315F814ACF2500065964D /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 275315F714ACF2500065964D /* CoreServices.framework */; };
@@ -169,6 +177,9 @@
 		275A29031649A11A00B0D8EE /* CouchbaseLitePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 27DA434D15914F5700F9E7B5 /* CouchbaseLitePrivate.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		275A29041649A12B00B0D8EE /* CBLAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E2E5A1159383E9005B9234 /* CBLAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		275A29051649A13900B0D8EE /* CBLReplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 27E2E5CB159533A5005B9234 /* CBLReplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2762AB5818D36F1B00649D47 /* CBLReplication+Transformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2762AB5618D36F1B00649D47 /* CBLReplication+Transformation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2762AB5918D36F1B00649D47 /* CBLReplication+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762AB5718D36F1B00649D47 /* CBLReplication+Transformation.m */; };
+		2762AB5A18D36F1B00649D47 /* CBLReplication+Transformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2762AB5718D36F1B00649D47 /* CBLReplication+Transformation.m */; };
 		2766EFF814DB7F9F009ECCA8 /* CBLMultipartWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2766EFF614DB7F9F009ECCA8 /* CBLMultipartWriter.h */; };
 		2766EFF914DB7F9F009ECCA8 /* CBLMultipartWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2766EFF714DB7F9F009ECCA8 /* CBLMultipartWriter.m */; };
 		2766EFFA14DB7F9F009ECCA8 /* CBLMultipartWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2766EFF714DB7F9F009ECCA8 /* CBLMultipartWriter.m */; };
@@ -342,7 +353,8 @@
 		27846FBD15D475DF0030122F /* MYStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FB815D475DF0030122F /* MYStreamUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27846FBE15D475DF0030122F /* MYStreamUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FB815D475DF0030122F /* MYStreamUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		27846FF115D5C8250030122F /* APITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27846FF015D5C8250030122F /* APITests.m */; };
-		2785BE9D16BC87EA00A3E881 /* CBL_URLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706461487584300F0F099 /* CBL_URLProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2785B48D18D3F11900CBB41A /* CBLReplication+Transformation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2762AB5618D36F1B00649D47 /* CBLReplication+Transformation.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		2785BE9D16BC87EA00A3E881 /* CBL_URLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706461487584300F0F099 /* CBL_URLProtocol.h */; };
 		2785BE9E16BC87ED00A3E881 /* CBL_Router.h in Headers */ = {isa = PBXBuildFile; fileRef = 27C706431486BE7100F0F099 /* CBL_Router.h */; };
 		278B0CA0152A8B1900577747 /* CBLCanonicalJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 278B0C9E152A8B1900577747 /* CBLCanonicalJSON.h */; };
 		278B0CA1152A8B1900577747 /* CBLCanonicalJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 278B0C9F152A8B1900577747 /* CBLCanonicalJSON.m */; };
@@ -618,13 +630,13 @@
 		AA1776BA1857ADDB00CB01A3 /* CBLIncrementalStoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA1776B81857ADDB00CB01A3 /* CBLIncrementalStoreTests.m */; };
 		AA1776BC1857AE4D00CB01A3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA1776BB1857AE4D00CB01A3 /* CoreData.framework */; };
 		AA24F8E4184538AE0091D577 /* CBLDatabaseChange.h in Headers */ = {isa = PBXBuildFile; fileRef = 2776A62E16A9BCBC006FF199 /* CBLDatabaseChange.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9EB57C718E6014000CB40A3 /* Lumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9EB57C618E6013F00CB40A3 /* Lumberjack.framework */; };
 		DA023B4614BCA94C008184BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F0745C11CD50A600E9A2AB /* Foundation.framework */; };
 		DA147C0C14BCA98A0052DA4D /* CBLListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 275315DF14ACF0A20065964D /* CBLListener.m */; };
 		DA147C0D14BCA98A0052DA4D /* CBLHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753160B14ACFC2A0065964D /* CBLHTTPConnection.m */; };
 		DA147C0E14BCA98A0052DA4D /* CBLHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E11F0F14AD15940006B340 /* CBLHTTPResponse.m */; };
 		DA147C1414BCAA870052DA4D /* DDNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155414ACEFC90065964D /* DDNumber.m */; };
 		DA147C1514BCAA870052DA4D /* DDRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155614ACEFC90065964D /* DDRange.m */; };
+		DA147C1614BCAA8F0052DA4D /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 275315B814ACF0330065964D /* DDLog.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		DA147C1814BCAAAD0052DA4D /* HTTPAuthenticationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155814ACEFC90065964D /* HTTPAuthenticationRequest.m */; };
 		DA147C1914BCAAAD0052DA4D /* HTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155A14ACEFC90065964D /* HTTPConnection.m */; };
 		DA147C1A14BCAAAD0052DA4D /* HTTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753155D14ACEFC90065964D /* HTTPMessage.m */; };
@@ -842,6 +854,8 @@
 			dstPath = Extras;
 			dstSubfolderSpec = 16;
 			files = (
+				275072A418E49BEA00A80C5A /* CBLIncrementalStore.h in Copy Extras */,
+				275072A518E49BEA00A80C5A /* CBLIncrementalStore.m in Copy Extras */,
 				792867DE178E0AED00248AF0 /* CBLRegisterJSViewCompiler.h in Copy Extras */,
 				27F273C117039D6000CD2B85 /* CBLUICollectionSource.h in Copy Extras */,
 				27F273C217039D6200CD2B85 /* CBLUICollectionSource.m in Copy Extras */,
@@ -937,6 +951,17 @@
 		2753156B14ACEFC90065964D /* HTTPRedirectResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPRedirectResponse.m; sourceTree = "<group>"; };
 		275315A814ACF00B0065964D /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		275315A914ACF00B0065964D /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		275315B014ACF0330065964D /* About.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = About.txt; sourceTree = "<group>"; };
+		275315B114ACF0330065964D /* DDAbstractDatabaseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDAbstractDatabaseLogger.h; sourceTree = "<group>"; };
+		275315B214ACF0330065964D /* DDAbstractDatabaseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDAbstractDatabaseLogger.m; sourceTree = "<group>"; };
+		275315B314ACF0330065964D /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		275315B414ACF0330065964D /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		275315B514ACF0330065964D /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		275315B614ACF0330065964D /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		275315B714ACF0330065964D /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		275315B814ACF0330065964D /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		275315B914ACF0330065964D /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		275315BA14ACF0330065964D /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
 		275315D514ACF0A10065964D /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CouchbaseLiteListener.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		275315D914ACF0A20065964D /* CouchbaseLiteListener-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CouchbaseLiteListener-Info.plist"; sourceTree = "<group>"; };
 		275315DB14ACF0A20065964D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -967,6 +992,8 @@
 		27538F9E17F1D9D6004C3BFD /* PrivilegedInstall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivilegedInstall.m; sourceTree = "<group>"; };
 		27538FA117F1ECE8004C3BFD /* LoggingMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoggingMode.h; sourceTree = "<group>"; };
 		27538FA217F1ECE8004C3BFD /* LoggingMode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = LoggingMode.c; sourceTree = "<group>"; };
+		2762AB5618D36F1B00649D47 /* CBLReplication+Transformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CBLReplication+Transformation.h"; sourceTree = "<group>"; };
+		2762AB5718D36F1B00649D47 /* CBLReplication+Transformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBLReplication+Transformation.m"; sourceTree = "<group>"; };
 		2766EFF614DB7F9F009ECCA8 /* CBLMultipartWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLMultipartWriter.h; sourceTree = "<group>"; };
 		2766EFF714DB7F9F009ECCA8 /* CBLMultipartWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLMultipartWriter.m; sourceTree = "<group>"; };
 		2766EFFB14DC7B37009ECCA8 /* CBLMultiStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLMultiStreamWriter.h; sourceTree = "<group>"; };
@@ -1328,7 +1355,6 @@
 		AA1776B71857ADDB00CB01A3 /* CBLIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBLIncrementalStore.m; path = Extras/CBLIncrementalStore.m; sourceTree = "<group>"; };
 		AA1776B81857ADDB00CB01A3 /* CBLIncrementalStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBLIncrementalStoreTests.m; path = Extras/CBLIncrementalStoreTests.m; sourceTree = "<group>"; };
 		AA1776BB1857AE4D00CB01A3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		D9EB57C618E6013F00CB40A3 /* Lumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Lumberjack.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/Manuscripts-axkkzdkytddelkgoidenwhmgkdxc/Build/Products/Debug/Lumberjack.framework"; sourceTree = "<group>"; };
 		DA023B6414BCA94C008184BB /* libCouchbaseLiteListener.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCouchbaseLiteListener.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA147C3614BCAC3B0052DA4D /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CouchbaseLiteListener.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA147C3A14BCAC780052DA4D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.0.sdk/System/Library/Frameworks/MobileCoreServices.framework; sourceTree = DEVELOPER_DIR; };
@@ -1365,7 +1391,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D9EB57C718E6014000CB40A3 /* Lumberjack.framework in Frameworks */,
 				275315FC14ACF83C0065964D /* CouchbaseLite.framework in Frameworks */,
 				275315F814ACF2500065964D /* CoreServices.framework in Frameworks */,
 				275315F314ACF1C20065964D /* Foundation.framework in Frameworks */,
@@ -1643,6 +1668,7 @@
 				2753156014ACEFC90065964D /* HTTPServer.m */,
 				2753156114ACEFC90065964D /* Responses */,
 				275315A614ACF00B0065964D /* CocoaAsyncSocket */,
+				275315AF14ACF0330065964D /* CocoaLumberjack */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1683,6 +1709,25 @@
 			);
 			name = CocoaAsyncSocket;
 			path = vendor/CocoaHTTPServer/Vendor/CocoaAsyncSocket;
+			sourceTree = SOURCE_ROOT;
+		};
+		275315AF14ACF0330065964D /* CocoaLumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				275315B014ACF0330065964D /* About.txt */,
+				275315B114ACF0330065964D /* DDAbstractDatabaseLogger.h */,
+				275315B214ACF0330065964D /* DDAbstractDatabaseLogger.m */,
+				275315B314ACF0330065964D /* DDASLLogger.h */,
+				275315B414ACF0330065964D /* DDASLLogger.m */,
+				275315B514ACF0330065964D /* DDFileLogger.h */,
+				275315B614ACF0330065964D /* DDFileLogger.m */,
+				275315B714ACF0330065964D /* DDLog.h */,
+				275315B814ACF0330065964D /* DDLog.m */,
+				275315B914ACF0330065964D /* DDTTYLogger.h */,
+				275315BA14ACF0330065964D /* DDTTYLogger.m */,
+			);
+			name = CocoaLumberjack;
+			path = vendor/CocoaHTTPServer/Vendor/CocoaLumberjack;
 			sourceTree = SOURCE_ROOT;
 		};
 		275315D714ACF0A20065964D /* Listener */ = {
@@ -2073,7 +2118,6 @@
 		27C70696148864BA00F0F099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D9EB57C618E6013F00CB40A3 /* Lumberjack.framework */,
 				AA1776BB1857AE4D00CB01A3 /* CoreData.framework */,
 				27538F8E17F15057004C3BFD /* ScriptingBridge.framework */,
 				792867D3178DE33E00248AF0 /* JavaScriptCore.framework */,
@@ -2163,6 +2207,8 @@
 				277EF39C17F4DEDD00F7B7F7 /* CBLQuery+Geo.m */,
 				27E2E5CB159533A5005B9234 /* CBLReplication.h */,
 				27E2E5CC159533A5005B9234 /* CBLReplication.m */,
+				2762AB5618D36F1B00649D47 /* CBLReplication+Transformation.h */,
+				2762AB5718D36F1B00649D47 /* CBLReplication+Transformation.m */,
 				27726AAA1889835F00AE6931 /* CBLJSON.h */,
 				27726AAB1889835F00AE6931 /* CBLJSON.m */,
 				27726AA81889835F00AE6931 /* CBLGeometry.h */,
@@ -2412,6 +2458,7 @@
 				270B3E211489390F00E0A926 /* CBL_URLProtocol.h in Headers */,
 				279EB2CE149140DE00E74185 /* CBLView+Internal.h in Headers */,
 				2753157614ACEFC90065964D /* DDRange.h in Headers */,
+				2762AB5818D36F1B00649D47 /* CBLReplication+Transformation.h in Headers */,
 				2753157A14ACEFC90065964D /* HTTPAuthenticationRequest.h in Headers */,
 				272401BE1860CBE00080E082 /* GCDAsyncSocket.h in Headers */,
 				2753157E14ACEFC90065964D /* HTTPConnection.h in Headers */,
@@ -2425,8 +2472,13 @@
 				2753159A14ACEFC90065964D /* HTTPFileResponse.h in Headers */,
 				2753159E14ACEFC90065964D /* HTTPRedirectResponse.h in Headers */,
 				277B5D3B1821A8380088881E /* yajl_lex.h in Headers */,
+				275315BC14ACF0330065964D /* DDAbstractDatabaseLogger.h in Headers */,
+				275315C014ACF0330065964D /* DDASLLogger.h in Headers */,
+				275315C414ACF0330065964D /* DDFileLogger.h in Headers */,
 				27BDA81E181973EF00F27A11 /* CBLBulkDownloader.h in Headers */,
+				275315C814ACF0330065964D /* DDLog.h in Headers */,
 				27F94120176A64BA007BAEBE /* CBLJSONValidator.h in Headers */,
+				275315CC14ACF0330065964D /* DDTTYLogger.h in Headers */,
 				27A073EC14C0BB6200F52FE7 /* CBLMisc.h in Headers */,
 				277B5DC91821A8B60088881E /* yajl_parse.h in Headers */,
 				279CE3B814D4A885009F3FA6 /* MYBlockUtils.h in Headers */,
@@ -2526,6 +2578,7 @@
 				27B0B7FD1492BDE800A817AD /* CBL_Body.h in Headers */,
 				27B0B7FE1492BDE800A817AD /* CBL_Revision.h in Headers */,
 				27F08C8B15A7A31B003C3E2B /* CBL_Attachment.h in Headers */,
+				2785B48D18D3F11900CBB41A /* CBLReplication+Transformation.h in Headers */,
 				27B0B7FF1492BDE800A817AD /* CBL_Server.h in Headers */,
 				27B0B8001492BDE800A817AD /* CBL_Router.h in Headers */,
 				27B0B8011492BDE800A817AD /* CBL_URLProtocol.h in Headers */,
@@ -2798,7 +2851,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					275315D414ACF0A10065964D = {
 						DevelopmentTeam = N2Q372V7W2;
@@ -2837,9 +2890,9 @@
 				DA023B2614BCA94C008184BB /* Listener iOS Library */,
 				270FE0C714C5008C005FF647 /* LiteServ */,
 				27538F4F17F13B03004C3BFD /* LiteServ App */,
-				275A29061649A54000B0D8EE /* All */,
 				792867BE178DE01900248AF0 /* CBLJSViewCompiler */,
 				27FA59EA179EEACA0043460A /* Documentation */,
+				275A29061649A54000B0D8EE /* All */,
 			);
 		};
 /* End PBXProject section */
@@ -3100,6 +3153,7 @@
 				27A82E3814A1145000C0B850 /* FMDatabaseAdditions.m in Sources */,
 				270B3E181489382F00E0A926 /* FMResultSet.m in Sources */,
 				27F128B7156AC8C5008465C2 /* OAPlaintextSignatureProvider.m in Sources */,
+				2762AB5918D36F1B00649D47 /* CBLReplication+Transformation.m in Sources */,
 				27F128B9156AC8F0008465C2 /* OAMutableURLRequest.m in Sources */,
 				270F5702156AD215000FEB8F /* OARequestParameter.m in Sources */,
 				27F128B5156AC8B7008465C2 /* OAToken.m in Sources */,
@@ -3180,6 +3234,7 @@
 				275315E014ACF0A20065964D /* CBLListener.m in Sources */,
 				2753160D14ACFC2A0065964D /* CBLHTTPConnection.m in Sources */,
 				27E11F1114AD15940006B340 /* CBLHTTPResponse.m in Sources */,
+				275315F214ACF1130065964D /* DDLog.m in Sources */,
 				275315E514ACF1130065964D /* DDNumber.m in Sources */,
 				275315E614ACF1130065964D /* DDRange.m in Sources */,
 				275315EA14ACF1130065964D /* HTTPServer.m in Sources */,
@@ -3265,6 +3320,7 @@
 				27F128B3156AC1CA008465C2 /* CBLOAuth1Authorizer.m in Sources */,
 				270F5707156AE0BF000FEB8F /* CBLAuthorizer.m in Sources */,
 				27ED8632157D0FC600712B33 /* CBLDocument.m in Sources */,
+				2762AB5A18D36F1B00649D47 /* CBLReplication+Transformation.m in Sources */,
 				27DA42FA158E66DD00F9E7B5 /* CBLRevision.m in Sources */,
 				27DA42FF158E7D3500F9E7B5 /* CBLDatabase.m in Sources */,
 				27DA430A158FA35600F9E7B5 /* CBLCache.m in Sources */,
@@ -3434,6 +3490,7 @@
 				DA147C1914BCAAAD0052DA4D /* HTTPConnection.m in Sources */,
 				DA147C1A14BCAAAD0052DA4D /* HTTPMessage.m in Sources */,
 				DA147C1B14BCAAAD0052DA4D /* HTTPServer.m in Sources */,
+				DA147C1614BCAA8F0052DA4D /* DDLog.m in Sources */,
 				DA147C1414BCAA870052DA4D /* DDNumber.m in Sources */,
 				DA147C1514BCAA870052DA4D /* DDRange.m in Sources */,
 				DA147C0C14BCA98A0052DA4D /* CBLListener.m in Sources */,
@@ -3621,7 +3678,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3629,7 +3685,7 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CURRENT_PROJECT_VERSION = 1.49;
+				CURRENT_PROJECT_VERSION = 1.495;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -3642,7 +3698,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_FILE = "$(PRODUCT_NAME)_vers.c";
@@ -3661,7 +3717,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F911CDC71800E9A2AB /* MYUtilities_Release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -3669,7 +3724,7 @@
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CURRENT_PROJECT_VERSION = 1.49;
+				CURRENT_PROJECT_VERSION = 1.495;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
@@ -3700,7 +3755,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3726,7 +3780,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3754,7 +3807,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3774,7 +3826,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3789,17 +3840,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Manuscripts-axkkzdkytddelkgoidenwhmgkdxc/Build/Products/Debug",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3812,7 +3858,7 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
@@ -3824,7 +3870,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -3833,10 +3878,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Manuscripts-axkkzdkytddelkgoidenwhmgkdxc/Build/Products/Debug",
-				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3845,7 +3886,7 @@
 				GCC_WARN_SIGN_COMPARE = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
@@ -3858,7 +3899,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3891,7 +3931,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -3936,7 +3975,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -3969,7 +4007,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -3993,385 +4030,6 @@
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
-		};
-		27A4DDFF182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 27F074F911CDC71800E9A2AB /* MYUtilities_Release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
-				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CURRENT_PROJECT_VERSION = 1.49;
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				SDKROOT = macosx;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_FILE = "$(PRODUCT_NAME)_vers.c";
-				WARNING_CFLAGS = (
-					"-Wall",
-					"-Wformat-security",
-					"-Wshorten-64-to-32",
-					"-Wmissing-declarations",
-					"-Woverriding-method-mismatch",
-					"-Wbool-conversion",
-				);
-			};
-			name = "Release 64bit";
-		};
-		27A4DE00182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXPORTED_SYMBOLS_FILE = Source/CouchbaseLite.exp;
-				FRAMEWORK_VERSION = A;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
-				);
-				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				PRODUCT_NAME = CouchbaseLite;
-				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE01182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MACH_O_TYPE = mh_dylib;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CouchbaseLite;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE02182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
-				);
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = CouchbaseLite;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE03182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "Demo-Mac/ShoppingDemo-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
-				PRODUCT_NAME = "Couchbase Lite Demo";
-				VALID_ARCHS = x86_64;
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE04182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "Demo-iOS/iOS Demo-Info.plist";
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "Grocery Sync";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE05182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INFOPLIST_FILE = "Demo-iOS/iOS Empty App-Info.plist";
-				LD_GENERATE_MAP_FILE = YES;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "Couchbase Lite Empty App";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE06182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEPLOYMENT_POSTPROCESSING = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/Manuscripts-axkkzdkytddelkgoidenwhmgkdxc/Build/Products/Debug",
-				);
-				FRAMEWORK_VERSION = A;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_SIGN_COMPARE = NO;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
-				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = CouchbaseLiteListener;
-				PROVISIONING_PROFILE = "";
-				STRIP_INSTALLED_PRODUCT = YES;
-				WRAPPER_EXTENSION = framework;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE07182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MACH_O_TYPE = mh_dylib;
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CouchbaseLiteListener;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				WRAPPER_EXTENSION = framework;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE08182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
-				GCC_WARN_SIGN_COMPARE = NO;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = CouchbaseLiteListener;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE09182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/ @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = "Release 64bit";
-		};
-		27A4DE0A182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				INFOPLIST_FILE = "LiteServ App/LiteServ App-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				PRODUCT_NAME = LiteServ;
-				WRAPPER_EXTENSION = app;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE0B182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = "Release 64bit";
-		};
-		27A4DE0C182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				COPY_PHASE_STRIP = YES;
-				DSTROOT = /tmp/CBLJSViewCompiler.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/vendor\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Source/CBLJSViewCompiler-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release 64bit";
-		};
-		27A4DE0D182D6F0900A7FEB1 /* Release 64bit */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_TREAT_WARNINGS_AS_ERRORS = "";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WARNING_CFLAGS = "";
-			};
-			name = "Release 64bit";
 		};
 		27B0B7C81492B83C00A817AD /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -4401,7 +4059,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4425,7 +4082,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4454,7 +4110,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4477,7 +4132,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4512,7 +4166,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4542,7 +4195,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4563,7 +4215,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -4642,11 +4293,416 @@
 			};
 			name = Release;
 		};
+		5F4DF37C18E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CURRENT_PROJECT_VERSION = 1.495;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_FILE = "$(PRODUCT_NAME)_vers.c";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+				);
+			};
+			name = Testing;
+		};
+		5F4DF37D18E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				PRODUCT_NAME = CouchbaseLite;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Testing;
+		};
+		5F4DF37E18E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Testing;
+		};
+		5F4DF37F18E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Testing;
+		};
+		5F4DF38018E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-Mac/ShoppingDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "Couchbase Lite Demo";
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Testing;
+		};
+		5F4DF38118E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"CBLIS_NO_CHANGE_COALESCING=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Demo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Grocery Sync";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Testing;
+		};
+		5F4DF38218E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Empty App-Info.plist";
+				LD_GENERATE_MAP_FILE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Couchbase Lite Empty App";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Testing;
+		};
+		5F4DF38318E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = CouchbaseLiteListener;
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Testing;
+		};
+		5F4DF38418E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Testing;
+		};
+		5F4DF38518E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_SIGN_COMPARE = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Testing;
+		};
+		5F4DF38618E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/ @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
+		5F4DF38718E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "LiteServ App/LiteServ App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = LiteServ;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Testing;
+		};
+		5F4DF38818E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CBLJSViewCompiler.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/vendor\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/CBLJSViewCompiler-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Testing;
+		};
+		5F4DF38918E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
+			};
+			name = Testing;
+		};
+		5F4DF38A18E7839E00E7D65A /* Testing */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Testing;
+		};
 		792867C8178DE01900248AF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -4677,7 +4733,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
@@ -4704,7 +4759,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COPY_PHASE_STRIP = NO;
@@ -4728,7 +4782,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COPY_PHASE_STRIP = YES;
@@ -4751,7 +4804,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4779,7 +4831,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -4804,8 +4855,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB923608733DC60010E9CD /* Debug */,
+				5F4DF37C18E7839E00E7D65A /* Testing */,
 				1DEB923708733DC60010E9CD /* Release */,
-				27A4DDFF182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4814,8 +4865,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270B3E0C1489359100E0A926 /* Debug */,
+				5F4DF37D18E7839E00E7D65A /* Testing */,
 				270B3E0D1489359100E0A926 /* Release */,
-				27A4DE00182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4824,8 +4875,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270FE0D214C5008C005FF647 /* Debug */,
+				5F4DF38618E7839E00E7D65A /* Testing */,
 				270FE0D314C5008C005FF647 /* Release */,
-				27A4DE09182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4834,8 +4885,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275315E214ACF0A20065964D /* Debug */,
+				5F4DF38318E7839E00E7D65A /* Testing */,
 				275315E314ACF0A20065964D /* Release */,
-				27A4DE06182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4844,8 +4895,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27538F7817F13B04004C3BFD /* Debug */,
+				5F4DF38718E7839E00E7D65A /* Testing */,
 				27538F7917F13B04004C3BFD /* Release */,
-				27A4DE0A182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4854,8 +4905,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275A29081649A54000B0D8EE /* Debug */,
+				5F4DF38A18E7839E00E7D65A /* Testing */,
 				275A29091649A54000B0D8EE /* Release */,
-				27A4DE0B182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4864,8 +4915,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27731F281495CFEF00815D67 /* Debug */,
+				5F4DF38218E7839E00E7D65A /* Testing */,
 				27731F291495CFEF00815D67 /* Release */,
-				27A4DE05182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4874,8 +4925,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B7C81492B83C00A817AD /* Debug */,
+				5F4DF37F18E7839E00E7D65A /* Testing */,
 				27B0B7C91492B83C00A817AD /* Release */,
-				27A4DE02182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4884,8 +4935,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B7F21492BB6C00A817AD /* Debug */,
+				5F4DF37E18E7839E00E7D65A /* Testing */,
 				27B0B7F31492BB6C00A817AD /* Release */,
-				27A4DE01182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4894,8 +4945,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B82A1492C16300A817AD /* Debug */,
+				5F4DF38118E7839E00E7D65A /* Testing */,
 				27B0B82B1492C16300A817AD /* Release */,
-				27A4DE04182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4904,8 +4955,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C706B0148864BA00F0F099 /* Debug */,
+				5F4DF38018E7839E00E7D65A /* Testing */,
 				27C706B1148864BA00F0F099 /* Release */,
-				27A4DE03182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4914,8 +4965,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27FA59EC179EEACA0043460A /* Debug */,
+				5F4DF38918E7839E00E7D65A /* Testing */,
 				27FA59ED179EEACA0043460A /* Release */,
-				27A4DE0D182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4924,8 +4975,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				792867C8178DE01900248AF0 /* Debug */,
+				5F4DF38818E7839E00E7D65A /* Testing */,
 				792867C9178DE01900248AF0 /* Release */,
-				27A4DE0C182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4934,8 +4985,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA023B6214BCA94C008184BB /* Debug */,
+				5F4DF38518E7839E00E7D65A /* Testing */,
 				DA023B6314BCA94C008184BB /* Release */,
-				27A4DE08182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -4944,8 +4995,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA147C3414BCAC3B0052DA4D /* Debug */,
+				5F4DF38418E7839E00E7D65A /* Testing */,
 				DA147C3514BCAC3B0052DA4D /* Release */,
-				27A4DE07182D6F0900A7FEB1 /* Release 64bit */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

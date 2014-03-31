@@ -38,6 +38,11 @@ _CBLGeoJSONKey
 _CBLTextKey
 _CBLVersion
 
+_CBLCompareRevIDs
+_MYClassFromType
+_MYGetPropertyInfo
+_kCBLReplicationChangeNotification
+
 # Non-public symbols that are used by CBLRouter and CBLListener:
 .objc_class_name_CBL_BlobStore
 .objc_class_name_CBL_BlobStoreWriter
