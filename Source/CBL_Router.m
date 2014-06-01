@@ -151,7 +151,8 @@
 
 
 - (BOOL) cacheWithEtag: (NSString*)etag {
-    NSString* eTag = $sprintf(@"\"%@\"", etag);
+    
+    NSString* eTag = _db.etagPrefix ? $sprintf(@"\"%@%@\"", _db.etagPrefix, etag) : $sprintf(@"\"%@\"", etag);
     _response[@"Etag"] = eTag;
     return $equal(eTag, [_request valueForHTTPHeaderField: @"If-None-Match"]);
 }

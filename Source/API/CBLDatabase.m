@@ -61,6 +61,7 @@ static id<CBLFilterCompiler> sFilterCompiler;
 
 @synthesize manager=_manager, unsavedModelsMutable=_unsavedModelsMutable;
 @synthesize path=_path, name=_name, isOpen=_isOpen;
+@synthesize etagPrefix = _etagPrefix;
 
 
 - (instancetype) initWithPath: (NSString*)path

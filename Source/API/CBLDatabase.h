@@ -201,6 +201,11 @@ typedef BOOL (^CBLFilterBlock) (CBLSavedRevision* revision, NSDictionary* params
 - (CBLReplication*) createPullReplication: (NSURL*)url;
 
 
+/**
+ *  A prefix used for Etag values when documents from this database are served over HTTP.
+ */
+@property (readwrite) NSString *etagPrefix;
+
 @end
 
 
@@ -232,7 +237,6 @@ typedef BOOL (^CBLChangeEnumeratorBlock) (NSString* key, id oldValue, id newValu
     for example, if the change came from an external HTTP request, the message will be in the
     response status line. The default message is "invalid document". */
 - (void) rejectWithMessage: (NSString*)message;
-
 
 #pragma mark - CONVENIENCE METHODS:
 
