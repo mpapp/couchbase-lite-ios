@@ -805,6 +805,13 @@
 			remoteGlobalIDString = 275315D414ACF0A10065964D;
 			remoteInfo = TouchDBListener;
 		};
+		5FB83FA7194D0566008D26AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DCB3185014EB418E001CFBEE;
+			remoteInfo = Lumberjack;
+		};
 		5FDD5A6F18ECCB410040CC27 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
@@ -2658,6 +2665,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5FB83FA8194D0566008D26AF /* PBXTargetDependency */,
 			);
 			name = "CBL Mac";
 			productName = ToyCouch;
@@ -3676,6 +3684,11 @@
 			target = 275315D414ACF0A10065964D /* CBL Listener Mac */;
 			targetProxy = 27E11F1C14AD25570006B340 /* PBXContainerItemProxy */;
 		};
+		5FB83FA8194D0566008D26AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Lumberjack;
+			targetProxy = 5FB83FA7194D0566008D26AF /* PBXContainerItemProxy */;
+		};
 		5FDD5A7418ECCB560040CC27 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Lumberjack;
@@ -3826,6 +3839,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3851,6 +3865,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3911,6 +3926,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -3942,6 +3958,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -4370,6 +4387,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
 			buildSettings = {
+				CBL_VERSION_STRING = 1.0;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -4381,6 +4399,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"CBL_VERSION_STRING=\"\\\"$(CBL_VERSION_STRING)\\\"\"",
+					"CBL_SOURCE_REVISION=\"\\\"$(CBL_SOURCE_REVISION)\\\"\"",
+				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -4409,6 +4432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -4572,6 +4596,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
