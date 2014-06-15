@@ -41,6 +41,10 @@
 - (CBLStatus) do_GETRoot;
 @end
 
+@interface CBLManager (Private)
+- (id)packageController;
+@end
+
 
 @implementation CBL_Router
 
@@ -152,8 +156,9 @@
 
 - (BOOL) cacheWithEtag: (NSString*)etag {
     
-    NSString* eTag = _db.etagPrefix ? $sprintf(@"\"%@%@\"", _db.etagPrefix, etag) : $sprintf(@"\"%@\"", etag);
-    _response[@"Etag"] = eTag;
+    NSString* eTag = _db.manager.etagPrefix ? $sprintf(@"\"%@%@\"", _db.manager.etagPrefix, etag) : $sprintf(@"\"%@\"", etag);
+    _response[@"Etag"] = eTag;    
+    assert(eTag.length > 10);
     return $equal(eTag, [_request valueForHTTPHeaderField: @"If-None-Match"]);
 }
 

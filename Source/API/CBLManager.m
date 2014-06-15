@@ -88,7 +88,7 @@ static NSString* CBLFullVersionInfo( void ) {
 
 @synthesize dispatchQueue=_dispatchQueue, directory = _dir;
 @synthesize customHTTPHeaders = _customHTTPHeaders;
-
+@synthesize etagPrefix = _etagPrefix;
 
 // http://wiki.apache.org/couchdb/HTTP_database_API#Naming_and_Addressing
 #define kLegalChars @"abcdefghijklmnopqrstuvwxyz0123456789_$()+-/"
@@ -220,6 +220,7 @@ static CBLManager* sInstance;
                                                                shared: _shared];
     
     managerCopy.customHTTPHeaders = [self.customHTTPHeaders copy];
+    managerCopy.etagPrefix = self.etagPrefix;
     
     return managerCopy;
 }

@@ -121,6 +121,11 @@ typedef struct CBLManagerOptions {
 
 @property (readonly, nonatomic) NSMutableDictionary* customHTTPHeaders;
 
+/**
+ *  A prefix used for Etag values when documents from this database are served over HTTP.
+ */
+@property (readwrite) NSString *etagPrefix;
+
 @end
 
 
