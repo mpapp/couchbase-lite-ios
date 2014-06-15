@@ -174,7 +174,6 @@
 		2766EFFE14DC7B37009ECCA8 /* CBLMultiStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2766EFFC14DC7B37009ECCA8 /* CBLMultiStreamWriter.m */; };
 		2766EFFF14DC7B37009ECCA8 /* CBLMultiStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2766EFFC14DC7B37009ECCA8 /* CBLMultiStreamWriter.m */; };
 		2767D7DF14C8D3E500ED0F26 /* Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0751211CDC7F900E9A2AB /* Logging.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2767D7E014C8D3EA00ED0F26 /* CollectionUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0749C11CD5B4F00E9A2AB /* CollectionUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		276BA0AD17DD13FA00D367CB /* CBLParseDate.c in Sources */ = {isa = PBXBuildFile; fileRef = 276BA0AC17DD13FA00D367CB /* CBLParseDate.c */; };
 		276BA0AE17DD13FA00D367CB /* CBLParseDate.c in Sources */ = {isa = PBXBuildFile; fileRef = 276BA0AC17DD13FA00D367CB /* CBLParseDate.c */; };
 		276F25FB18A3386100A70679 /* DDData.h in Headers */ = {isa = PBXBuildFile; fileRef = 276F25F918A3386100A70679 /* DDData.h */; };
@@ -604,6 +603,7 @@
 		27FFE20617BBF20D0040AE60 /* CBLReplicator_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 27821BBB149001B20099B373 /* CBLReplicator_Tests.m */; };
 		27FFE20A17BD28080040AE60 /* CBL_Replicator+Backgrounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */; };
 		27FFE20B17BD28080040AE60 /* CBL_Replicator+Backgrounding.m in Sources */ = {isa = PBXBuildFile; fileRef = 27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */; };
+		5F268CEE194E4AA300F3535E /* CollectionUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F0749B11CD5B4F00E9A2AB /* CollectionUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5FB3D9B4190B29E90042A63D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB3D9B3190B29E90042A63D /* Security.framework */; };
 		5FDD5A7518ECCB620040CC27 /* Lumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDD5A7018ECCB410040CC27 /* Lumberjack.framework */; };
 		5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156314ACEFC90065964D /* HTTPAsyncFileResponse.m */; };
@@ -2476,6 +2476,7 @@
 				272401B31860CB4B0080E082 /* WebSocket_Internal.h in Headers */,
 				270B3E221489391E00E0A926 /* CBLDatabase+Internal.h in Headers */,
 				2751D4E4151BAE7000F7FD57 /* CBLManager+Internal.h in Headers */,
+				5F268CEE194E4AA300F3535E /* CollectionUtils.h in Headers */,
 				2711CDFD14C7590A00505D55 /* CBLDatabase+Attachments.h in Headers */,
 				2711CE0014C7595900505D55 /* CBLDatabase+Insertion.h in Headers */,
 				2773ADC714BD1EB80027A292 /* CBLDatabase+LocalDocs.h in Headers */,
@@ -3307,7 +3308,6 @@
 				27E2E61815993CB6005B9234 /* CBL_URLProtocol.m in Sources */,
 				2767D7DF14C8D3E500ED0F26 /* Logging.m in Sources */,
 				5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */,
-				2767D7E014C8D3EA00ED0F26 /* CollectionUtils.m in Sources */,
 				279CE39014D1EDA0009F3FA6 /* Test.m in Sources */,
 				27F3A5D015ED427200263663 /* MYRegexUtils.m in Sources */,
 			);
