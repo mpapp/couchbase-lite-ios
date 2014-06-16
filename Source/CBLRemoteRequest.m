@@ -43,7 +43,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
 #if TARGET_OS_IPHONE
-        const char* platform = [@"iOS" UTF8String];
+        const char* platform = "iOS";
 #else
         const char* platform = "Mac OS X";
 #endif
@@ -65,13 +65,13 @@
         _request = [[NSMutableURLRequest alloc] initWithURL: url];
         _request.HTTPMethod = method;
         _request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
-        
+
         // Add headers.
         [_request setValue: [[self class] userAgentHeader] forHTTPHeaderField:@"User-Agent"];
         [requestHeaders enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
             [_request setValue:value forHTTPHeaderField:key];
         }];
-        
+
         [self setupRequest: _request withBody: body];
 
     }
@@ -199,7 +199,7 @@
     // Note: This assumes all requests are idempotent, since even though we got an error back, the
     // request might have succeeded on the remote server, and by retrying we'd be issuing it again.
     // PUT and POST requests aren't generally idempotent, but the ones sent by the replicator are.
-    
+
     if (_retryCount >= kMaxRetries)
         return NO;
     NSTimeInterval delay = RetryDelay(_retryCount);
@@ -321,7 +321,7 @@ static void WarnUntrustedCert(NSString* host, SecTrustRef trust) {
         if ([self retryWithCredential])
             return;
     }
-    
+
 #if DEBUG
     if (!CBLStatusIsError(_status)) {
         // By setting the user default "CBLFakeFailureRate" to a number between 0.0 and 1.0,
@@ -335,7 +335,7 @@ static void WarnUntrustedCert(NSString* host, SecTrustRef trust) {
         }
     }
 #endif
-    
+
     if (CBLStatusIsError(_status))
         [self cancelWithStatus: _status];
 }
@@ -370,11 +370,11 @@ static void WarnUntrustedCert(NSString* host, SecTrustRef trust) {
         if (!(_dontLog404 && error.code == kCBLStatusNotFound && $equal(error.domain, CBLHTTPErrorDomain)))
             Log(@"%@: Got error %@", self, error);
     }
-    
+
     // If the error is likely transient, retry:
     if (CBLMayBeTransientError(error) && [self retry])
         return;
-    
+
     [self clearConnection];
     [self respondWithResult: nil error: error];
 }

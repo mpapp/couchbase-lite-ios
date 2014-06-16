@@ -93,7 +93,9 @@
 		272401B81860CB4B0080E082 /* WebSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401B21860CB4B0080E082 /* WebSocketClient.m */; };
 		272401B91860CB4B0080E082 /* WebSocketClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401B21860CB4B0080E082 /* WebSocketClient.m */; };
 		272401BE1860CBE00080E082 /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 272401BC1860CBE00080E082 /* GCDAsyncSocket.h */; };
-		272401C01860CBE00080E082 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401BD1860CBE00080E082 /* GCDAsyncSocket.m */; };
+		272401BF1860CBE00080E082 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401BD1860CBE00080E082 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		272401C01860CBE00080E082 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401BD1860CBE00080E082 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
+		272401C61860D0850080E082 /* WebSocketHTTPLogic.h in Headers */ = {isa = PBXBuildFile; fileRef = 272401C41860D0850080E082 /* WebSocketHTTPLogic.h */; };
 		272401C71860D0850080E082 /* WebSocketHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401C51860D0850080E082 /* WebSocketHTTPLogic.m */; };
 		272401C81860D0850080E082 /* WebSocketHTTPLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 272401C51860D0850080E082 /* WebSocketHTTPLogic.m */; };
 		272401CB1860D39B0080E082 /* CBLWebSocketChangeTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 272401C91860D39B0080E082 /* CBLWebSocketChangeTracker.h */; };
@@ -102,7 +104,7 @@
 		272A690D17B2CCF0000722FA /* CBLFacebookAuthorizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 272A690B17B2CCF0000722FA /* CBLFacebookAuthorizer.h */; };
 		272A690E17B2CCF0000722FA /* CBLFacebookAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 272A690C17B2CCF0000722FA /* CBLFacebookAuthorizer.m */; };
 		272A690F17B2CCF0000722FA /* CBLFacebookAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 272A690C17B2CCF0000722FA /* CBLFacebookAuthorizer.m */; };
-		2733022A18F8572700A488F7 /* CBLAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2733022818F8572700A488F7 /* CBLAuthenticator.h */; };
+		2733022A18F8572700A488F7 /* CBLAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2733022818F8572700A488F7 /* CBLAuthenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2733022B18F8572700A488F7 /* CBLAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2733022918F8572700A488F7 /* CBLAuthenticator.m */; };
 		2733022C18F8572700A488F7 /* CBLAuthenticator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2733022918F8572700A488F7 /* CBLAuthenticator.m */; };
 		2733022F18F86C9800A488F7 /* CBLTokenAuthorizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2733022D18F86C9800A488F7 /* CBLTokenAuthorizer.h */; };
@@ -345,6 +347,7 @@
 		278B0CA0152A8B1900577747 /* CBLCanonicalJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 278B0C9E152A8B1900577747 /* CBLCanonicalJSON.h */; };
 		278B0CA1152A8B1900577747 /* CBLCanonicalJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 278B0C9F152A8B1900577747 /* CBLCanonicalJSON.m */; };
 		278B0CA2152A8B1900577747 /* CBLCanonicalJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 278B0C9F152A8B1900577747 /* CBLCanonicalJSON.m */; };
+		278D359A19118FBC00C9C8EC /* CBLAuthenticator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2733022818F8572700A488F7 /* CBLAuthenticator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		278E4DD81562B40B00DDCEF9 /* MYURLUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 278E4DD61562B40B00DDCEF9 /* MYURLUtils.h */; };
 		278E4DD91562B40B00DDCEF9 /* MYURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E4DD71562B40B00DDCEF9 /* MYURLUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		278E4DDA1562B40B00DDCEF9 /* MYURLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 278E4DD71562B40B00DDCEF9 /* MYURLUtils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -2610,6 +2613,7 @@
 				27B0B7FC1492BDE800A817AD /* CBLView+Internal.h in Headers */,
 				27B0B7FD1492BDE800A817AD /* CBL_Body.h in Headers */,
 				27B0B7FE1492BDE800A817AD /* CBL_Revision.h in Headers */,
+				278D359A19118FBC00C9C8EC /* CBLAuthenticator.h in Headers */,
 				27F08C8B15A7A31B003C3E2B /* CBL_Attachment.h in Headers */,
 				2785B48D18D3F11900CBB41A /* CBLReplication+Transformation.h in Headers */,
 				27B0B7FF1492BDE800A817AD /* CBL_Server.h in Headers */,
@@ -2886,7 +2890,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0600;
 				TargetAttributes = {
 					275315D414ACF0A10065964D = {
 						DevelopmentTeam = N2Q372V7W2;
@@ -3750,12 +3754,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CBL_SOURCE_REVISION = "";
 				CBL_VERSION_STRING = 1.0;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3796,12 +3802,14 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CBL_SOURCE_REVISION = "";
 				CBL_VERSION_STRING = 1.0;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
 				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3839,6 +3847,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "";
@@ -3854,6 +3863,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				PRODUCT_MODULE_NAME = CouchbaseLite;
 				PRODUCT_NAME = CouchbaseLite;
 				WRAPPER_EXTENSION = framework;
 			};
@@ -3865,6 +3875,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3881,6 +3892,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				PRODUCT_MODULE_NAME = CouchbaseLite;
 				PRODUCT_NAME = CouchbaseLite;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = framework;
@@ -3928,6 +3940,7 @@
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
@@ -3946,6 +3959,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_MODULE_NAME = CouchbaseLiteListener;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = framework;
@@ -3961,6 +3975,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -3976,6 +3991,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_MODULE_NAME = CouchbaseLiteListener;
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				STRIP_INSTALLED_PRODUCT = YES;
