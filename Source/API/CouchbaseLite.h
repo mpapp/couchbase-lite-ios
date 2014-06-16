@@ -31,6 +31,8 @@
 #import "CBLModel.h"
 #import "CBLModelFactory.h"
 #import "CBLJSON.h"
+#import "Logging.h"
+#import "CollectionUtils.h"
 
 #if TARGET_OS_IPHONE
 #import "CBLUITableSource.h"
