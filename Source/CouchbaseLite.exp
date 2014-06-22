@@ -43,6 +43,16 @@ _MYClassFromType
 _MYGetPropertyInfo
 _kCBLReplicationChangeNotification
 
+# MYUtilities
+__castIfArrayOf
+__dictof
+__castIf
+__mdictof
+_$equal
+
+# GCDAsyncSocket
+_GCDAsyncSocketSSLClientSideAuthenticate
+
 # Non-public symbols that are used by CBLRouter and CBLListener:
 .objc_class_name_CBL_BlobStore
 .objc_class_name_CBL_BlobStoreWriter
