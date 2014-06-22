@@ -12,7 +12,7 @@
 #import "CBLGNUstep.h"
 #endif
 
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 #import "CBLJSON.h"
 
