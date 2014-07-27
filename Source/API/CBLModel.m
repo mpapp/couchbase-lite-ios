@@ -58,7 +58,6 @@
     return self;
 }
 
-
 + (instancetype) modelForDocument: (CBLDocument*)document {
     NSParameterAssert(document);
     CBLModel* model = document.modelObject;
@@ -79,7 +78,7 @@
 }
 
 
-- (void) dealloc
+- (void)dealloc
 {
     LogTo(CBLModel, @"%@ dealloc", self);
     if(_needsSave)
