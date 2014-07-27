@@ -187,7 +187,24 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
            @"Critical Couchbase Lite code has been stripped from the app binary! "
             "Please make sure to build using the -ObjC linker flag!");
 
-    int flags =  SQLITE_OPEN_FILEPROTECTION_COMPLETEUNLESSOPEN | SQLITE_OPEN_SHAREDCACHE;
+    int flags = 0;
+#if TARGET_OS_IPHONE
+    switch (_manager.fileProtection) {
+        case NSDataWritingFileProtectionNone:
+            flags |= SQLITE_OPEN_FILEPROTECTION_NONE;
+            break;
+        case NSDataWritingFileProtectionComplete:
+            flags |= SQLITE_OPEN_FILEPROTECTION_COMPLETE;
+            break;
+        case NSDataWritingFileProtectionCompleteUntilFirstUserAuthentication:
+            flags |= SQLITE_OPEN_FILEPROTECTION_COMPLETEUNTILFIRSTUSERAUTHENTICATION;
+            break;
+        default:
+            flags |= SQLITE_OPEN_FILEPROTECTION_COMPLETEUNLESSOPEN;
+            break;
+    }
+#endif
+
     if (_readOnly)
         flags |= SQLITE_OPEN_READONLY | SQLITE_OPEN_SHAREDCACHE;
     else
@@ -390,12 +407,21 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
     }
 
     if (dbVersion < 11) {
-        // Version 10: Add another index
+        // Version 11: Add another index
         NSString* sql = @"CREATE INDEX revs_cur_deleted ON revs(current,deleted); \
                           PRAGMA user_version = 11";
         if (![self initialize: sql error: outError])
             return NO;
         dbVersion = 11;
+    }
+
+    if (dbVersion < 12) {
+        // Version 12: Because of a bug fix that changes JSON collation, invalidate view indexes
+        NSString* sql = @"DELETE FROM maps; UPDATE views SET lastsequence=0; \
+                          PRAGMA user_version = 12";
+        if (![self initialize: sql error: outError])
+            return NO;
+        dbVersion = 12;
     }
 
     if (isNew && ![self initialize: @"END TRANSACTION" error: outError])
@@ -413,6 +439,9 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
         [_fmdb close];
         return NO;
     }
+#if TARGET_OS_IPHONE
+    _attachments.fileProtection = _manager.fileProtection;
+#endif
 
     _isOpen = YES;
 
@@ -827,10 +856,41 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
 
 
 - (CBL_Revision*) getDocumentWithID: (NSString*)docID
-                       revisionID: (NSString*)revID
+                         revisionID: (NSString*)revID
 {
     CBLStatus status;
     return [self getDocumentWithID: docID revisionID: revID options: 0 status: &status];
+}
+
+
+// Note: This method assumes the docID is correct and doesn't bother to look it up on its own.
+- (CBL_Revision*) getDocumentWithID: (NSString*)docID
+                           sequence: (SequenceNumber)sequence
+                             status: (CBLStatus*)outStatus
+{
+    CBL_MutableRevision* result = nil;
+    CBLStatus status;
+    CBL_FMResultSet *r = [_fmdb executeQuery:
+                          @"SELECT revid, deleted, no_attachments, json FROM revs WHERE sequence=?",
+                          @(sequence)];
+    if (!r) {
+        status = self.lastDbError;
+    } else if (![r next]) {
+        status = kCBLStatusNotFound;
+    } else {
+        result = [[CBL_MutableRevision alloc] initWithDocID: docID
+                                                      revID: [r stringForColumnIndex: 0]
+                                                    deleted: [r boolForColumnIndex: 1]];
+        result.sequence = sequence;
+        [self expandStoredJSON: [r dataNoCopyForColumnIndex: 3]
+                  intoRevision: result
+                       options: ([r boolForColumnIndex: 2] ? kCBLNoAttachments : 0)];
+        status = kCBLStatusOK;
+    }
+    [r close];
+    if (outStatus)
+        *outStatus = status;
+    return result;
 }
 
 

@@ -81,13 +81,16 @@ TestCase(API_Manager) {
         Log(@"Database '%@': %u documents", db.name, (unsigned)db.documentCount);
     }
 
-    CBLManagerOptions options = {.readOnly= true};
     NSError* error;
+    CBLDatabase* db = [dbmgr databaseNamed: @"test_db" error: &error];
+    CAssert(db, @"Couldn't get/create test_db: %@", error);
+
+    CBLManagerOptions options = {.readOnly= true};
     CBLManager* ro = [[CBLManager alloc] initWithDirectory: dbmgr.directory options: &options
                                                      error: &error];
     CAssert(ro);
 
-    CBLDatabase* db = [ro databaseNamed: @"foo" error: &error];
+    db = [ro databaseNamed: @"foo" error: &error];
     CAssertNil(db);
 
     db = [ro existingDatabaseNamed: @"test_db" error: &error];
@@ -95,6 +98,17 @@ TestCase(API_Manager) {
     CBLDocument* doc = [db createDocument];
     CAssert(![doc putProperties: @{@"foo": @"bar"} error: &error]);
     [ro close];
+
+    RequireTestCase(API_ExcludedFromBackup);
+}
+
+
+TestCase(API_ExcludedFromBackup) {
+    CBLManager* dbmgr = [CBLManager createEmptyAtTemporaryPath: @"ExcludedFromBackup"];
+    AssertEq(dbmgr.excludedFromBackup, NO);
+    dbmgr.excludedFromBackup = YES;
+    AssertEq(dbmgr.excludedFromBackup, YES);
+    [dbmgr close];
 }
 
 
@@ -820,6 +834,73 @@ TestCase(API_ViewWithLinkedDocs) {
 }
 
 
+TestCase(API_EmitNil) {
+    RequireTestCase(API_CreateView);
+    CBLDatabase* db = createEmptyDB();
+    CBLView* view = [db viewNamed: @"vu"];
+    [view setMapBlock: MAPBLOCK({
+        emit(doc[@"sequence"], nil);
+    }) version: @"1"];
+
+    CBLDocument* doc1 = createDocumentWithProperties(db, @{@"sequence": @1});
+    __unused CBLDocument* doc2 = createDocumentWithProperties(db, @{@"sequence": @2});
+    CBLQuery* query = view.createQuery;
+    NSArray* result1 = [[query run: NULL] allObjects];
+    AssertEqual([(CBLQueryRow*)result1[0] key], @1);
+    AssertEqual([(CBLQueryRow*)result1[0] value], nil);
+    AssertEqual([(CBLQueryRow*)result1[1] key], @2);
+    AssertEqual([(CBLQueryRow*)result1[1] value], nil);
+
+    // Update doc1
+    [doc1 update:^BOOL(CBLUnsavedRevision *rev) {
+        rev[@"something"] = @"else";
+        return YES;
+    } error: NULL];
+
+    // Query again and verify that the results sets are not considered equal:
+    NSArray* result2 = [[query run: NULL] allObjects];
+    Assert(![result2 isEqual: result1]);
+    AssertEqual([(CBLQueryRow*)result2[0] key], @1);
+    AssertEqual([(CBLQueryRow*)result2[0] value], nil);
+}
+
+
+TestCase(API_EmitDoc) {
+    RequireTestCase(API_CreateView);
+    CBLDatabase* db = createEmptyDB();
+    CBLView* view = [db viewNamed: @"vu"];
+    [view setMapBlock: MAPBLOCK({
+        emit(doc[@"sequence"], doc);
+    }) version: @"1"];
+
+    CBLDocument* doc1 = createDocumentWithProperties(db, @{@"sequence": @1});
+    CBLDocument* doc2 = createDocumentWithProperties(db, @{@"sequence": @2});
+    CBLQuery* query = view.createQuery;
+    NSArray* result1 = [[query run: NULL] allObjects];
+    AssertEqual([(CBLQueryRow*)result1[0] key], @1);
+    AssertEqual([(CBLQueryRow*)result1[0] value], doc1.properties);
+    AssertEqual([(CBLQueryRow*)result1[1] key], @2);
+    AssertEqual([(CBLQueryRow*)result1[1] value], doc2.properties);
+    NSDictionary* initialDoc1Properties = doc1.properties;
+
+    // Update doc1
+    [doc1 update:^BOOL(CBLUnsavedRevision *rev) {
+        rev[@"something"] = @"else";
+        return YES;
+    } error: NULL];
+
+    // Query again and verify that the results sets are not considered equal:
+    NSArray* result2 = [[query run: NULL] allObjects];
+    Assert(![result2 isEqual: result1]);
+    AssertEqual([(CBLQueryRow*)result2[0] key], @1);
+    AssertEqual([(CBLQueryRow*)result2[0] value], doc1.properties);
+
+    // Rows from initial query should still return the revisions they were created with:
+    AssertEqual([(CBLQueryRow*)result1[0] key], @1);
+    AssertEqual([(CBLQueryRow*)result1[0] value], initialDoc1Properties); // i.e. _not_ doc1.properties
+}
+
+
 TestCase(API_LiveQuery) {
     RequireTestCase(API_CreateView);
     CBLDatabase* db = createEmptyDB();
@@ -860,6 +941,104 @@ TestCase(API_LiveQuery) {
     [query stop];
     CAssert(finished, @"Live query timed out!");
     closeTestDB(db);
+}
+
+
+@interface TestLiveQueryObserver : NSObject
+@property (copy) NSDictionary*change;
+@property unsigned changeCount;
+@end
+
+@implementation TestLiveQueryObserver
+@synthesize change=_change, changeCount=_changeCount;
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    self.change = change;
+    ++_changeCount;
+}
+@end
+
+
+TestCase(API_LiveQuery_DispatchQueue) {
+    RequireTestCase(API_LiveQuery);
+    CBLManager* dbmgr = [CBLManager createEmptyAtTemporaryPath: @"LiveQuery_DispatchQueue"];
+    dispatch_queue_t queue = dispatch_queue_create("LiveQuery", NULL);
+    dbmgr.dispatchQueue = queue;
+    __block CBLDatabase* db;
+    __block CBLView* view;
+    __block CBLLiveQuery* query;
+    TestLiveQueryObserver* observer = [[TestLiveQueryObserver alloc] init];
+    dispatch_sync(queue, ^{
+        NSError* error;
+        db = [dbmgr createEmptyDatabaseNamed: @"test_db" error: &error];
+        view = [db viewNamed: @"vu"];
+        [view setMapBlock: MAPBLOCK({
+            emit(doc[@"sequence"], nil);
+        }) version: @"1"];
+
+        static const NSUInteger kNDocs = 50;
+        createDocuments(db, kNDocs);
+
+        query = [[view createQuery] asLiveQuery];
+        query.startKey = @23;
+        query.endKey = @33;
+        Log(@"Created %@", query);
+        CAssertNil(query.rows);
+
+        [query addObserver: observer forKeyPath: @"rows" options: NSKeyValueObservingOptionNew context: NULL];
+    });
+
+    Log(@"Waiting for live query to complete...");
+    NSDate* timeout = [NSDate dateWithTimeIntervalSinceNow: 10.0];
+    bool finished = false;
+    while (!finished && timeout.timeIntervalSinceNow > 0.0) {
+        usleep(1000);
+        if (observer.change) {
+            CBLQueryEnumerator* rows = observer.change[NSKeyValueChangeNewKey];
+            Log(@"Live query rows = %@", rows);
+            if (rows != nil) {
+                CAssertEq(rows.count, (NSUInteger)11);
+
+                int expectedKey = 23;
+                for (CBLQueryRow* row in rows) {
+                    CAssertEq(row.document.database, db);
+                    CAssertEq([row.key intValue], expectedKey);
+                    ++expectedKey;
+                }
+                finished = true;
+            }
+        }
+    }
+    Assert(finished, @"LiveQuery didn't complete");
+
+    dispatch_async(queue, ^{
+        NSDictionary* properties = @{@"testName": @"testDatabase", @"sequence": @(23.5)};
+        createDocumentWithProperties(db, properties);
+    });
+
+    Log(@"Waiting for live query to update again...");
+    timeout = [NSDate dateWithTimeIntervalSinceNow: 10.0];
+    finished = false;
+    while (!finished && timeout.timeIntervalSinceNow > 0.0) {
+        usleep(1000);
+        if (observer.changeCount == 2) {
+            CBLQueryEnumerator* rows = observer.change[NSKeyValueChangeNewKey];
+            Log(@"Live query rows = %@", rows);
+            if (rows != nil) {
+                CAssertEq(rows.count, (NSUInteger)12);
+                finished = true;
+            }
+        }
+    }
+    Assert(finished, @"LiveQuery didn't update");
+
+    // Clean up:
+    dispatch_sync(queue, ^{
+        [query removeObserver: observer forKeyPath: @"rows"];
+        [query stop];
+        closeTestDB(db);
+        [dbmgr close];
+    });
 }
 
 
@@ -974,9 +1153,13 @@ TestCase(API) {
     RequireTestCase(API_ChangeTracking);
     RequireTestCase(API_CreateView);
     RequireTestCase(API_Validation);
+    RequireTestCase(API_CreateView);
     RequireTestCase(API_ViewWithLinkedDocs);
     RequireTestCase(API_SharedMapBlocks);
+    RequireTestCase(API_EmitNil);
+    RequireTestCase(API_EmitDoc);
     RequireTestCase(API_LiveQuery);
+    RequireTestCase(API_LiveQuery_DispatchQueue);
     RequireTestCase(API_Model);
 
     RequireTestCase(API_Replicator);

@@ -601,7 +601,7 @@
         _changesFilter = [_db compileFilterNamed: filterName status: &status];
         if (!_changesFilter)
             return status;
-        _changesFilterParams = [self.jsonQueries copy];
+        _changesFilterParams = [self.queries copy];
     }
     
     CBL_RevisionList* changes = [db changesSinceSequence: since
@@ -774,7 +774,9 @@ static NSArray* parseJSONRevArrayQuery(NSString* queryStr) {
     NSString* type = nil;
     CBLAttachmentEncoding encoding = kCBLAttachmentEncodingNone;
     NSString* acceptEncoding = [_request valueForHTTPHeaderField: @"Accept-Encoding"];
-    BOOL acceptEncoded = (acceptEncoding && [acceptEncoding rangeOfString: @"gzip"].length > 0);
+    BOOL acceptEncoded = (acceptEncoding
+                          && [acceptEncoding rangeOfString: @"gzip"].length > 0
+                          && [_request valueForHTTPHeaderField: @"Range"] == nil);
 
     if ($equal(_request.HTTPMethod, @"HEAD")) {
         NSString* filePath = [_db getAttachmentPathForSequence: rev.sequence

@@ -269,7 +269,11 @@ typedef void (^CBLChangeMatcherClient)(id sequence, NSString* docID, NSArray* re
 }
 
 - (NSInteger) endParsingData {
-    Assert(_parser);
+    if (!_parser) {
+        Warn(@"Connection closed before first byte");
+        return - 1;
+    }
+    
     BOOL ok = [_parser finish];
     _parser = nil;
     if (!ok) {
@@ -364,7 +368,7 @@ typedef void (^CBLChangeMatcherClient)(id sequence, NSString* docID, NSArray* re
 
 - (id) end {
     //Log(@"Ended ChangeMatcher with seq=%@, id='%@', deleted=%d, revs=%@", _sequence, _docID, _deleted, _revs);
-    if (!_sequence || !_docID || _revs.count == 0)
+    if (!_sequence || !_docID)
         return nil;
     _client(_sequence, _docID, [_revs copy], _deleted);
     _sequence = nil;

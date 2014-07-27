@@ -37,11 +37,6 @@
 @end
 
 
-@interface CBLQueryRow ()
-@property (readwrite, nonatomic) CBLDatabase* database;
-@end
-
-
 
 @implementation CBLQuery
 {
@@ -176,7 +171,6 @@
 
 - (void) runAsync: (void (^)(CBLQueryEnumerator*, NSError*))onComplete {
     LogTo(Query, @"%@: Async query %@/%@...", self, _database.name, (_view.name ?: @"_all_docs"));
-    NSThread *callingThread = [NSThread currentThread];
     NSString* viewName = _view.name;
     CBLQueryOptions options = self.queryOptions;
     
@@ -188,7 +182,7 @@
                                      options: options
                                 lastSequence: &lastSequence
                                       status: &status];
-        MYOnThread(callingThread, ^{
+        [_database.manager doAsync:^{
             // Back on original thread, call the onComplete block:
             LogTo(Query, @"%@: ...async query finished (%u rows)", self, (unsigned)rows.count);
             NSError* error = nil;
@@ -200,7 +194,7 @@
                                                             rows: rows
                                                   sequenceNumber: lastSequence];
             onComplete(e, error);
-        });
+        }];
     }];
 }
 
@@ -460,6 +454,11 @@ static id fromJSON( NSData* json ) {
 }
 
 
+static inline BOOL isNonMagicValue(id value) {
+    return value && !([value isKindOfClass: [NSData class]] && CBLValueIsEntireDoc(value));
+}
+
+
 // This is used implicitly by -[CBLLiveQuery update] to decide whether the query result has changed
 // enough to notify the client. So it's important that it not give false positives, else the app
 // won't get notified of changes.
@@ -475,7 +474,7 @@ static id fromJSON( NSData* json ) {
             && $equal(_documentProperties, other->_documentProperties)) {
         // If values were emitted, compare them. Otherwise we have nothing to go on so check
         // if _anything_ about the doc has changed (i.e. the sequences are different.)
-        if (_value || other->_value)
+        if (isNonMagicValue(_value) || isNonMagicValue(other->_value))
             return  $equal(_value, other->_value);
         else
             return _sequence == other->_sequence;
@@ -501,7 +500,21 @@ static id fromJSON( NSData* json ) {
     if (!value) {
         value = _value;
         if ([value isKindOfClass: [NSData class]]) {   // _value may start out as unparsed JSON data
-            value = fromJSON(_value);
+            if (CBLValueIsEntireDoc(value)) {
+                // Value is a placeholder ("*") denoting that the map function emitted "doc" as
+                // the value. So load the body of the revision now:
+                Assert(_database);
+                Assert(_sequence);
+                CBLStatus status;
+                CBL_Revision* rev = [_database getDocumentWithID: _sourceDocID
+                                                        sequence: _sequence
+                                                          status: &status];
+                if (!rev)
+                    Warn(@"%@: Couldn't load doc for row value: status %d", self, status);
+                value = rev.properties;
+            } else {
+                value = fromJSON(value);
+            }
             _parsedValue = value;
         }
     }
