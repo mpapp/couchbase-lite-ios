@@ -109,12 +109,6 @@
 }
 
 
-- (void) detachFromDocument {
-    _document.modelObject = nil;
-    _document = nil;
-}
-
-
 - (NSString*) idForNewDocumentInDatabase: (CBLDatabase*)db {
     return nil;  // subclasses can override this to customize the doc ID
 }
@@ -133,7 +127,6 @@
         LogTo(CBLModel, @"%@ made new document", self);
     } else {
         [self deleteDocument: nil];
-        [self detachFromDocument];  // detach immediately w/o waiting for success
     }
 }
 
@@ -156,7 +149,6 @@
 
     if (![rev createRevisionWithProperties: properties error: outError])
         return NO;
-    [self detachFromDocument];
     return YES;
 }
 
@@ -181,21 +173,34 @@
     _isNew = false;
     [self markExternallyChanged];
     
-    // Send KVO notifications about all my properties in case they changed:
+    // Prepare to send KVO notifications about all my properties in case they changed:
     NSSet* keys = [[self class] propertyNames];
     for (NSString* key in keys)
         [self willChangeValueForKey: key];
-    
-    // Remove unchanged cached values in _properties:
-    if (_changedNames && _properties) {
-        NSMutableSet* removeKeys = [NSMutableSet setWithArray: [_properties allKeys]];
-        [removeKeys minusSet: _changedNames];
-        [_properties removeObjectsForKeys: removeKeys.allObjects];
-    } else {
+
+    if (doc.isDeleted) {
+        // If doc was deleted, revert any unsaved changes and mark doc as unchanged:
         _properties = nil;
+        _changedNames = nil;
+        _changedAttachments = nil;
+        self.needsSave = NO;
+        // Detach from document:
+        _document.modelObject = nil;
+        _document = nil;
+
+    } else {
+        // Otherwise, remove unchanged cached values in _properties:
+        if (_changedNames && _properties) {
+            NSMutableSet* removeKeys = [NSMutableSet setWithArray: [_properties allKeys]];
+            [removeKeys minusSet: _changedNames];
+            [_properties removeObjectsForKeys: removeKeys.allObjects];
+        } else {
+            _properties = nil;
+        }
+        [self didLoadFromDocument];
     }
-    
-    [self didLoadFromDocument];
+
+    // Send KVO notifications about all my properties:
     for (NSString* key in keys)
         [self didChangeValueForKey: key];
 }
