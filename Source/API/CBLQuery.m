@@ -60,7 +60,10 @@
 - (instancetype) initWithDatabase: (CBLDatabase*)database view: (CBLView*)view {
     self = [super init];
     if (self) {
+        
+        Assert(database);
         _database = database;
+        
         _view = view;
         _limit = kDefaultCBLQueryOptions.limit;  // this has a nonzero default (UINT_MAX)
         _fullTextRanking = kDefaultCBLQueryOptions.fullTextRanking; // defaults to YES
@@ -341,6 +344,8 @@
     if (self ) {
         if (!rows)
             return nil;
+        
+        Assert(database);
         _database = database;
         _rows = [rows copy];
         _sequenceNumber = sequenceNumber;
