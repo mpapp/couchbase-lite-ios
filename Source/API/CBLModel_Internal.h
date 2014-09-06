@@ -30,6 +30,8 @@
 /** Copy of the currently cached property values, including changed values */
 @property (readonly) NSDictionary *currentProperties;
 
+- (id) getValueOfProperty: (NSString*)property ofClass: (Class)klass;
+
 - (void) cacheValue: (id)value ofProperty: (NSString*)property changed: (BOOL)changed;
 - (void) willSave: (NSSet*)changedProperties;   // overridable
 - (CBLModel*) modelWithDocID: (NSString*)docID
