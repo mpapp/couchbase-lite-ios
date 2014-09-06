@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CBLDatabase, CBL_Revision, CBL_RevisionList, CBLBatcher, CBLReachability;
+@class CBLDatabase, CBL_Revision, CBL_RevisionList, CBLBatcher, CBLReachability, CBL_Replicator;
 @protocol CBLAuthorizer;
 
 typedef CBL_Revision* (^RevisionBodyTransformationBlock)(CBL_Revision*);
@@ -19,6 +19,9 @@ extern NSString* CBL_ReplicatorProgressChangedNotification;
 /** Posted when replicator stops running. */
 extern NSString* CBL_ReplicatorStoppedNotification;
 
+@protocol CBL_ReplicatorDelegate <NSObject>
+- (void)replicatorDidProgress:(CBL_Replicator *)replicator;
+@end
 
 /** Abstract base class for push or pull replications. */
 @interface CBL_Replicator : NSObject
@@ -60,6 +63,7 @@ extern NSString* CBL_ReplicatorStoppedNotification;
 @property (copy) NSDictionary* filterParameters;
 @property (copy) NSArray *docIDs;
 @property (copy) NSDictionary* options;
+@property (weak) id<CBL_ReplicatorDelegate> delegate;
 
 /** Optional dictionary of headers to be added to all requests to remote servers. */
 @property (copy) NSDictionary* requestHeaders;

@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-@class CBLDatabase;
+@class CBLDatabase, CBLReplication;
 @protocol CBLAuthenticator;
 
+@protocol CBLReplicationDelegate <NSObject>
+- (void)replicationDidProgress:(CBLReplication *)replication;
+@end
 
 /** Describes the current status of a replication. */
 typedef NS_ENUM(unsigned, CBLReplicationStatus) {
@@ -33,6 +36,7 @@ typedef NS_ENUM(unsigned, CBLReplicationStatus) {
 /** Does the replication pull from (as opposed to push to) the target? */
 @property (nonatomic, readonly) BOOL pull;
 
+@property (weak) id<CBLReplicationDelegate> delegate;
 
 #pragma mark - OPTIONS:
 

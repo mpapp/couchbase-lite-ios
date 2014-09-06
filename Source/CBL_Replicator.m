@@ -160,7 +160,7 @@ NSString* CBL_ReplicatorStoppedNotification = @"CBL_ReplicatorStopped";
 @synthesize remoteCheckpoint=_remoteCheckpoint;
 @synthesize authorizer=_authorizer;
 @synthesize requestHeaders = _requestHeaders;
-
+@synthesize delegate = _delegate;
 
 - (BOOL) isPush {
     return NO;  // guess who overrides this?
@@ -196,6 +196,9 @@ NSString* CBL_ReplicatorStoppedNotification = @"CBL_ReplicatorStopped";
     LogTo(SyncVerbose, @"%@: postProgressChanged (%u/%u, active=%d (batch=%u, net=%u), online=%d)",
           self, (unsigned)_changesProcessed, (unsigned)_changesTotal,
           _active, (unsigned)_batcher.count, _asyncTaskCount, _online);
+    
+    [self.delegate replicatorDidProgress:self];
+    
     NSNotification* n = [NSNotification notificationWithName: CBL_ReplicatorProgressChangedNotification
                                                       object: self];
     [[NSNotificationQueue defaultQueue] enqueueNotification: n

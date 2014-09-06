@@ -25,7 +25,7 @@
 #import "CBLFacebookAuthorizer.h"
 #import "MYBlockUtils.h"
 #import "MYURLUtils.h"
-
+#import "CBL_Replicator.h"
 
 #define RUN_IN_BACKGROUND 1
 
@@ -37,7 +37,7 @@ NSString* const kCBLReplicationChangeNotification = @"CBLReplicationChange";
 #define kChannelsQueryParam  @"channels"
 
 
-@interface CBLReplication ()
+@interface CBLReplication () <CBL_ReplicatorDelegate>
 @property (nonatomic, readwrite) BOOL running;
 @property (nonatomic, readwrite) CBLReplicationStatus status;
 @property (nonatomic, readwrite) unsigned completedChangesCount, changesCount;
@@ -59,6 +59,7 @@ NSString* const kCBLReplicationChangeNotification = @"CBLReplicationChange";
 @synthesize running = _running, completedChangesCount=_completedChangesCount;
 @synthesize changesCount=_changesCount, lastError=_lastError, status=_status;
 @synthesize authenticator=_authenticator;
+@synthesize delegate=_delegate;
 
 
 - (instancetype) initWithDatabase: (CBLDatabase*)database
@@ -409,6 +410,7 @@ NSString* const kCBLReplicationChangeNotification = @"CBLReplicationChange";
     // The setup should use properties, not ivars, because the ivars may change on the main thread.
     CBLStatus status;
     CBL_Replicator* repl = [server_dbmgr replicatorWithProperties: properties status: &status];
+    repl.delegate = self;
     if (!repl) {
         [_database doAsync: ^{
             [self updateStatus: kCBLReplicationStopped
@@ -444,6 +446,10 @@ NSString* const kCBLReplicationChangeNotification = @"CBLReplicationChange";
     [self bg_updateProgress];
 }
 
+- (void)replicatorDidProgress:(CBL_Replicator *)replicator
+{
+    [self.delegate replicationDidProgress:self];
+}
 
 // CAREFUL: This is called on the server's background thread!
 - (void) bg_stopReplicator {
