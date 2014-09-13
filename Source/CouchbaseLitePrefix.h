@@ -64,6 +64,6 @@
 #define OAToken                     CBL_OAToken
 
 // Rename the WebScket classes to avoid collisions:
-#define WebSocket                   CBL_WebSocket
-#define WebSocketClient             CBL_WebSocketClient
-#define WebSocketHTTPLogic          CBL_WebSocketHTTPLogic
+//#define WebSocket                   CBL_WebSocket
+//#define WebSocketClient             CBL_WebSocketClient
+//#define WebSocketHTTPLogic          CBL_WebSocketHTTPLogic
