@@ -14,6 +14,7 @@
 
 #if DEBUG
 #import "APITestUtils.h"
+#import "MYBlockUtils.h"
 
 
 TestCase(API_CreateView) {
@@ -49,7 +50,6 @@ TestCase(API_CreateView) {
         CAssertEq(row.sequenceNumber, (UInt64)expectedKey+1);
         ++expectedKey;
     }
-    closeTestDB(db);
 }
 
 
@@ -86,7 +86,6 @@ TestCase(API_ViewWithLinkedDocs) {
         CAssertEq(row.document, prevDoc);
         ++rowNumber;
     }
-    closeTestDB(db);
 }
 
 
@@ -209,8 +208,6 @@ TestCase(API_ViewCustomSort) {
     AssertEqual(rows.nextRow.value, @[@"none"]);
     AssertEqual(rows.nextRow.value, @[@"furry"]);
     AssertNil(rows.nextRow);
-
-    closeTestDB(db);
 }
 
 
@@ -238,8 +235,6 @@ TestCase(API_ViewCustomFilter) {
     AssertEqual(rows.nextRow.value, @"furry");
     AssertEqual(rows.nextRow.value, @"scaly");
     AssertNil(rows.nextRow);
-
-    closeTestDB(db);
 }
 
 
@@ -262,8 +257,6 @@ TestCase(API_AllDocsCustomFilter) {
     AssertEqual(rows.nextRow.key, @"2");
     AssertEqual(rows.nextRow.key, @"3");
     AssertNil(rows.nextRow);
-
-    closeTestDB(db);
 }
 
 
@@ -272,7 +265,7 @@ TestCase(API_AllDocsCustomFilter) {
 
 TestCase(API_LiveQuery) {
     RequireTestCase(API_CreateView);
-    CBLDatabase* db = createEmptyDB();
+    CBLDatabase* db = createManagerAndEmptyDBAtPath(@"API_LiveQuery");
     CBLView* view = [db viewNamed: @"vu"];
     [view setMapBlock: MAPBLOCK({
         emit(doc[@"sequence"], nil);
@@ -290,9 +283,9 @@ TestCase(API_LiveQuery) {
     Log(@"Waiting for live query to update...");
     NSDate* timeout = [NSDate dateWithTimeIntervalSinceNow: 10.0];
     bool finished = false;
-    while (!finished && timeout.timeIntervalSinceNow > 0.0) {
-        if (![[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: timeout])
-            break;
+    while (!finished) {
+        [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: timeout];
+        Assert(timeout.timeIntervalSinceNow > 0.0, @"timed out waiting for live query");
         CBLQueryEnumerator* rows = query.rows;
         Log(@"Live query rows = %@", rows);
         if (rows != nil) {
@@ -309,7 +302,6 @@ TestCase(API_LiveQuery) {
     }
     [query stop];
     CAssert(finished, @"Live query timed out!");
-    closeTestDB(db);
 }
 
 
@@ -405,15 +397,73 @@ TestCase(API_LiveQuery_DispatchQueue) {
     dispatch_sync(queue, ^{
         [query removeObserver: observer forKeyPath: @"rows"];
         [query stop];
-        closeTestDB(db);
         [dbmgr close];
     });
 }
 
 
+TestCase(API_LiveQuery_WaitForRows) {
+    RequireTestCase(API_LiveQuery);
+    CBLDatabase* db = createManagerAndEmptyDBAtPath(@"API_LiveQuery");
+    CBLView* view = [db viewNamed: @"vu"];
+    [view setMapBlock: MAPBLOCK({
+        emit(doc[@"sequence"], nil);
+    }) version: @"1"];
+
+    createDocuments(db, 1000);
+
+    // Schedule a garden variety event on the default runloop mode; we want to ensure
+    // that this does _not_ trigger during the -waitForRows call.
+    __block BOOL delayedBlockRan = NO;
+    MYAfterDelay(0.0, ^{
+        delayedBlockRan = YES;
+    });
+
+    CBLLiveQuery* query = [[view createQuery] asLiveQuery];
+    Assert([query waitForRows]);
+    Assert(!delayedBlockRan, @"waitForRows accidentally allowed a default-mode event");
+    [query stop];
+}
+
+
+TestCase(API_LiveQuery_UpdateInterval) {
+    RequireTestCase(API_LiveQuery);
+    CBLDatabase* db = createManagerAndEmptyDBAtPath(@"API_LiveQuery");
+    CBLView* view = [db viewNamed: @"vu"];
+    [view setMapBlock: MAPBLOCK({
+        emit(doc[@"sequence"], nil);
+    }) version: @"1"];
+
+    createDocuments(db, 10);
+
+    CBLLiveQuery* query = [[view createQuery] asLiveQuery];
+    query.updateInterval = 0.25;
+    Log(@"Created %@", query);
+
+    TestLiveQueryObserver* observer = [TestLiveQueryObserver new];
+    [query addObserver: observer forKeyPath: @"rows" options: NSKeyValueObservingOptionNew
+                   context: NULL];
+    AfterThisTest(^{
+        [query removeObserver:observer forKeyPath:@"rows"];
+    });
+
+    NSDate* timeout = [NSDate dateWithTimeIntervalSinceNow: 2.0];
+    while (timeout.timeIntervalSinceNow > 0.0) {
+        if (![[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode
+                                      beforeDate: [NSDate dateWithTimeIntervalSinceNow: 0.05]])
+            break;
+        createDocuments(db, 1);
+    }
+    [query stop];
+
+    Log(@"LiveQuery notified observers %d times", observer.changeCount);
+    CAssert(observer.changeCount >= 7 && observer.changeCount <= 9);
+}
+
+
 TestCase(API_AsyncViewQuery) {
     RequireTestCase(API_CreateView);
-    CBLDatabase* db = createEmptyDB();
+    CBLDatabase* db = createManagerAndEmptyDBAtPath(@"API_AsyncViewQuery");
     CBLView* view = [db viewNamed: @"vu"];
     [view setMapBlock: MAPBLOCK({
         emit(doc[@"sequence"], nil);
@@ -451,7 +501,98 @@ TestCase(API_AsyncViewQuery) {
             break;
     }
     CAssert(finished, @"Async query timed out!");
-    closeTestDB(db);
+}
+
+// Ensure that when the view mapblock changes, a related live query
+// will be notified and automatically updated
+TestCase(API_LiveQuery_UpdatesWhenViewChanges) {
+    CBLDatabase* db = createManagerAndEmptyDBAtPath(@"UpdatesWhenViewChanges");
+    
+    CBLView* view = [db viewNamed: @"vu"];
+    
+    [view setMapBlock: MAPBLOCK({
+        emit(@1, nil);
+    }) version: @"1"];
+    
+    createDocuments(db, 1);
+    
+    CBLQuery* query = [view createQuery];
+    CBLQueryEnumerator* rows = [query run: NULL];
+    CAssertEq(rows.count, (NSUInteger)1);
+    
+    int expectedKey = 1;
+    for (CBLQueryRow* row in rows) {
+        CAssertEq([row.key intValue], expectedKey);
+    }
+    
+    CBLLiveQuery* liveQuery = [[view createQuery] asLiveQuery];
+//    CAssertNil(liveQuery.rows);
+    
+    TestLiveQueryObserver* observer = [TestLiveQueryObserver new];
+
+    [liveQuery addObserver: observer forKeyPath: @"rows" options: NSKeyValueObservingOptionNew context: NULL];
+    AfterThisTest(^{
+        [liveQuery removeObserver:observer forKeyPath:@"rows"];
+    });
+
+    NSDate* timeout = [NSDate dateWithTimeIntervalSinceNow: 10.0];
+    bool finished = false;
+    while (!finished && timeout.timeIntervalSinceNow > 0.0) {
+
+        Log(@"Waiting for live query FIRST update...");
+        if (![[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: timeout])
+            break;
+
+        if (observer.changeCount == 1) {
+            
+            CBLQueryEnumerator* rows = liveQuery.rows;
+            Log(@"Live query rows = %@", rows);
+            if (rows != nil) {
+                CAssertEq(rows.count, (NSUInteger)1);
+                
+                int expectedKey = 1;
+                for (CBLQueryRow* row in rows) {
+                    CAssertEq([row.key intValue], expectedKey);
+                }
+                finished = true;
+            }
+        }
+
+    }
+    CAssert(finished, @"Live query timed out!");
+
+    // now update the view definition, while the live query is running
+    [view setMapBlock: MAPBLOCK({
+        emit(@2, nil);
+    }) version: @"2"];
+    
+    timeout = [NSDate dateWithTimeIntervalSinceNow: 10.0];
+    finished = false;
+    while (!finished && timeout.timeIntervalSinceNow > 0.0) {
+        Log(@"Waiting for live query SECOND update...");
+        if (![[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate: timeout])
+            break;
+        
+        if (observer.changeCount == 2) {
+            
+            CBLQueryEnumerator* rows = liveQuery.rows;
+            Log(@"Live query rows = %@", rows);
+            if (rows != nil) {
+                CAssertEq(rows.count, (NSUInteger)1);
+                
+                int expectedKey = 2;
+                for (CBLQueryRow* row in rows) {
+                    CAssertEq([row.key intValue], expectedKey);
+                }
+                finished = true;
+            }
+
+        }
+        
+    }
+    CAssert(finished, @"Live query timed out!");
+    
+    [liveQuery stop];
 }
 
 
@@ -488,7 +629,6 @@ TestCase(API_SharedMapBlocks) {
         return @"ok";
     }];
     CAssertEqual(result, @"ok");
-    closeTestDB(db);
     [mgr close];
 }
 

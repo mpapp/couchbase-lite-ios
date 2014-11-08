@@ -715,7 +715,7 @@ static NSString *CBLISResultTypeName(NSFetchRequestResultType resultType);
                     
                     NSString *viewName = CBLISToManyViewNameForRelationship(rel);
                     NSString *destEntityName = rel.destinationEntity.name;
-                    NSString *inverseRelNameLower = [rel.inverseRelationship.name lowercaseString];
+                    NSString *inverseRelNameLower = rel.inverseRelationship.name;
                     if (entityNames.count == 0) {
                         CBLView *view = [self.database viewNamed:viewName];
                         [view setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
@@ -1158,6 +1158,8 @@ static NSString *CBLISResultTypeName(NSFetchRequestResultType resultType);
                         value = [NSNumber numberWithLong:CBLISIsNull(value) ? 0 : [value longValue]];
                         break;
                     case NSDecimalAttributeType:
+                        value = [NSDecimalNumber numberWithDouble:CBLISIsNull(value) ? 0.0 : [value doubleValue]];
+                        break;
                     case NSDoubleAttributeType:
                     case NSFloatAttributeType:
                         value = [NSNumber numberWithDouble:CBLISIsNull(value) ? 0.0 : [value doubleValue]];

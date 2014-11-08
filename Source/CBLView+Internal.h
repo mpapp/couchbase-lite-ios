@@ -48,7 +48,7 @@
 @end
 
 #define kCBLQueryOptionsDefaultLimit UINT_MAX
-
+extern NSString* const kCBLViewChangeNotification;
 
 typedef enum {
     kCBLViewCollationUnicode,
@@ -88,6 +88,7 @@ BOOL CBLRowPassesFilter(CBLDatabase* db, CBLQueryRow* row, const CBLQueryOptions
 
 #if DEBUG  // for unit tests only
 - (void) setCollation: (CBLViewCollation)collation;
+- (void) forgetMapBlock;
 #endif
 
 @property (readonly) NSArray* viewsInGroup;

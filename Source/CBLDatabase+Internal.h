@@ -24,6 +24,11 @@ extern NSString* const CBL_DatabaseWillCloseNotification;
 extern NSString* const CBL_DatabaseWillBeDeletedNotification;
 
 
+/** A private runloop mode for waiting on. */
+extern NSString* const CBL_PrivateRunloopMode;
+
+/** Runloop modes that events/blocks will be scheduled to run in. Includes CBL_PrivateRunloopMode. */
+extern NSArray* CBL_RunloopModes;
 
 
 /** Options for what metadata to include in document bodies */
@@ -64,7 +69,6 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
     CBL_FMDatabase *_fmdb;
     BOOL _readOnly;
     BOOL _isOpen;
-    int _transactionLevel;
     NSThread* _thread;
     dispatch_queue_t _dispatchQueue;    // One and only one of _thread or _dispatchQueue is set
     NSCache* _docIDs;
@@ -179,7 +183,8 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
                                             options: (CBLContentOptions)options;
 - (NSString*) winningRevIDOfDocNumericID: (SInt64)docNumericID
                                isDeleted: (BOOL*)outIsDeleted
-                              isConflict: (BOOL*)outIsConflict;
+                              isConflict: (BOOL*)outIsConflict
+                                  status: (CBLStatus*)outStatus;
 
 - (CBL_Revision*) getParentRevision: (CBL_Revision*)rev;
 
@@ -235,5 +240,9 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
 - (BOOL) runFilter: (CBLFilterBlock)filter
             params: (NSDictionary*)filterParams
         onRevision: (CBL_Revision*)rev;
+
+/** Post an NSNotification. handles if the database is running on a separate dispatch_thread
+ (issue #364). */
+- (void) postNotification: (NSNotification*)notification;
 
 @end

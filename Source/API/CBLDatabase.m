@@ -35,7 +35,7 @@
 
 
 // NOTE: This file contains mostly just public-API method implementations.
-// The lower-level stuff is in CBLDatabase.m, etc.
+// The lower-level stuff is in CBLDatabase+Internal.m, etc.
 
 
 // Size of document cache: max # of otherwise-unreferenced docs that will be kept in memory.
@@ -109,18 +109,7 @@ static id<CBLFilterCompiler> sFilterCompiler;
     NSNotification* n = [NSNotification notificationWithName: kCBLDatabaseChangeNotification
                                                       object: self
                                                     userInfo: userInfo];
-    if (_dispatchQueue) {
-        // NSNotificationQueue is runloop-based, doesn't work on dispatch queues. (#364)
-        [self doAsync:^{
-            [[NSNotificationCenter defaultCenter] postNotification: n];
-        }];
-    } else {
-        NSNotificationQueue* queue = [NSNotificationQueue defaultQueue];
-        [queue enqueueNotification: n
-                      postingStyle: NSPostASAP 
-                      coalesceMask: NSNotificationNoCoalescing
-                          forModes: @[NSRunLoopCommonModes]];
-    }
+    [self postNotification:n];
 }
 
 
@@ -149,7 +138,7 @@ static void catchInBlock(void (^block)()) {
     if (_dispatchQueue)
         dispatch_async(_dispatchQueue, ^{catchInBlock(block);});
     else
-        MYOnThread(_thread, ^{catchInBlock(block);});
+        MYOnThreadInModes(_thread, CBL_RunloopModes, NO, ^{catchInBlock(block);});
 }
 
 
@@ -157,7 +146,7 @@ static void catchInBlock(void (^block)()) {
     if (_dispatchQueue)
         dispatch_sync(_dispatchQueue, ^{catchInBlock(block);});
     else
-        MYOnThreadSynchronously(_thread, ^{catchInBlock(block);});
+        MYOnThreadInModes(_thread, CBL_RunloopModes, YES, ^{catchInBlock(block);});
 }
 
 
@@ -169,6 +158,15 @@ static void catchInBlock(void (^block)()) {
         //FIX: This schedules on the _current_ thread, not _thread!
         MYAfterDelay(delay, ^{catchInBlock(block);});
     }
+}
+
+
+- (BOOL) waitFor: (BOOL (^)())block {
+    if (_dispatchQueue) {
+        Warn(@"-[CBLDatabase waitFor:] cannot be used with dispatch queues, only runloops");
+        return NO;
+    }
+    return MYWaitFor(CBL_PrivateRunloopMode, block);
 }
 
 

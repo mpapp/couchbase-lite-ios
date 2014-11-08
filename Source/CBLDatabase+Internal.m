@@ -31,12 +31,16 @@
 #import "FMDatabase.h"
 #import "FMDatabaseAdditions.h"
 #import "MYBlockUtils.h"
+#import "MYReadWriteLock.h"
 #import "ExceptionUtils.h"
 
 
 NSString* const CBL_DatabaseChangesNotification = @"CBLDatabaseChanges";
 NSString* const CBL_DatabaseWillCloseNotification = @"CBL_DatabaseWillClose";
 NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDeleted";
+
+NSString* const CBL_PrivateRunloopMode = @"CouchbaseLitePrivate";
+NSArray* CBL_RunloopModes;
 
 #define kDocIDCacheSize 1000
 
@@ -49,17 +53,18 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
 @implementation CBLDatabase (Internal)
 
 
-#if 0
 + (void) initialize {
     if (self == [CBLDatabase class]) {
+        CBL_RunloopModes = @[NSRunLoopCommonModes, CBL_PrivateRunloopMode];
+#if 0
         Log(@"SQLite version %s", sqlite3_libversion());
         int i = 0;
         const char* opt;
         while (NULL != (opt = sqlite3_compileoption_get(i++)))
                Log(@"SQLite has option '%s'", opt);
+#endif
     }
 }
-#endif
 
 
 - (CBL_FMDatabase*) fmdb {
@@ -126,24 +131,20 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
         _readOnly = readOnly;
         _fmdb = [[CBL_FMDatabase alloc] initWithPath: _path];
         _fmdb.dispatchQueue = manager.dispatchQueue;
-        _fmdb.busyRetryTimeout = kSQLiteBusyTimeout;
+        _fmdb.databaseLock = [self.shared lockForDatabaseNamed: _name];
 #if DEBUG
         _fmdb.logsErrors = YES;
 #else
         _fmdb.logsErrors = WillLogTo(CBLDatabase);
 #endif
         _fmdb.traceExecution = WillLogTo(CBLDatabaseVerbose);
+
         _docIDs = [[NSCache alloc] init];
         _docIDs.countLimit = kDocIDCacheSize;
         _dispatchQueue = manager.dispatchQueue;
         if (!_dispatchQueue)
             _thread = [NSThread currentThread];
         _startTime = [NSDate date];
-
-        if (0) {
-            // Appease the static analyzer by using these category ivars in this source file:
-            _pendingAttachmentsByDigest = nil;
-        }
     }
     return self;
 }
@@ -409,14 +410,7 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
         dbVersion = 10;
     }
 
-    if (dbVersion < 11) {
-        // Version 11: Add another index
-        NSString* sql = @"CREATE INDEX revs_cur_deleted ON revs(current,deleted); \
-                          PRAGMA user_version = 11";
-        if (![self initialize: sql error: outError])
-            return NO;
-        dbVersion = 11;
-    }
+    // (Version 11 used to create the index revs_cur_deleted, which is obsoleted in version 16)
 
     if (dbVersion < 12) {
         // Version 12: Because of a bug fix that changes JSON collation, invalidate view indexes
@@ -453,6 +447,18 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
         if (![self initialize: sql error: outError])
             return NO;
         dbVersion = 15;
+    }
+
+    if (dbVersion < 16) {
+        // Version 16: Fix the very suboptimal index revs_cur_deleted.
+        // The new revs_current is an optimal index for finding the winning revision of a doc.
+        NSString* sql = @"DROP INDEX IF EXISTS revs_current; \
+                          DROP INDEX IF EXISTS revs_cur_deleted; \
+                          CREATE INDEX revs_current ON revs(doc_id, current desc, deleted, revid desc);\
+                          PRAGMA user_version = 16";
+        if (![self initialize: sql error: outError])
+            return NO;
+        dbVersion = 16;
     }
 
     if (isNew && ![self initialize: @"END TRANSACTION" error: outError])
@@ -492,43 +498,39 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
 }
 
 - (void) _close {
-    if (!_isOpen)
-        return;
+    if (_isOpen) {
+        LogTo(CBLDatabase, @"Closing <%p> %@", self, _path);
 
-    LogTo(CBLDatabase, @"Closing <%p> %@", self, _path);
-    Assert(_transactionLevel == 0, @"Can't close database while %u transactions active",
-            _transactionLevel);
+        // Don't want any models trying to save themselves back to the db. (Generally there shouldn't
+        // be any, because the public -close: method saves changes first.)
+        for (CBLModel* model in _unsavedModelsMutable.copy)
+            model.needsSave = false;
+        _unsavedModelsMutable = nil;
 
-    // Don't want any models trying to save themselves back to the db. (Generally there shouldn't
-    // be any, because the public -close: method saves changes first.)
-    for (CBLModel* model in _unsavedModelsMutable.copy)
-        model.needsSave = false;
-    _unsavedModelsMutable = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName: CBL_DatabaseWillCloseNotification
+                                                            object: self];
+        [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                        name: CBL_DatabaseChangesNotification
+                                                      object: nil];
+        [[NSNotificationCenter defaultCenter] removeObserver: self
+                                                        name: CBL_DatabaseWillBeDeletedNotification
+                                                      object: nil];
+        for (CBLView* view in _views.allValues)
+            [view databaseClosing];
+        
+        _views = nil;
+        for (CBL_Replicator* repl in _activeReplicators.copy)
+            [repl databaseClosing];
+        
+        _activeReplicators = nil;
+        
+        [_fmdb close]; // this returns BOOL, but its implementation never returns NO
+        _isOpen = NO;
 
-    [[NSNotificationCenter defaultCenter] postNotificationName: CBL_DatabaseWillCloseNotification
-                                                        object: self];
-    [[NSNotificationCenter defaultCenter] removeObserver: self
-                                                    name: CBL_DatabaseChangesNotification
-                                                  object: nil];
-    [[NSNotificationCenter defaultCenter] removeObserver: self
-                                                    name: CBL_DatabaseWillBeDeletedNotification
-                                                  object: nil];
-    for (CBLView* view in _views.allValues)
-        [view databaseClosing];
-    
-    _views = nil;
-    for (CBL_Replicator* repl in _activeReplicators.copy)
-        [repl databaseClosing];
-    
-    _activeReplicators = nil;
-    
-    [_fmdb close]; // this returns BOOL, but its implementation never returns NO
-    _isOpen = NO;
-    _transactionLevel = 0;
-
-    [[NSNotificationCenter defaultCenter] removeObserver: self];
-    [self _clearDocumentCache];
-    _modelFactory = nil;
+        [[NSNotificationCenter defaultCenter] removeObserver: self];
+        [self _clearDocumentCache];
+        _modelFactory = nil;
+    }
     [_manager _forgetDatabase: self];
 }
 
@@ -588,33 +590,24 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
 
 
 - (BOOL) beginTransaction {
-    if (![_fmdb executeUpdate: $sprintf(@"SAVEPOINT tdb%d", _transactionLevel + 1)]) {
-        Warn(@"Failed to create savepoint transaction!");
+    if (![_fmdb beginTransaction]) {
+        Warn(@"Failed to create SQLite transaction!");
         return NO;
     }
-    ++_transactionLevel;
-    LogTo(CBLDatabase, @"Begin transaction (level %d)...", _transactionLevel);
+    LogTo(CBLDatabase, @"Begin transaction (level %d)...", _fmdb.transactionLevel);
     return YES;
 }
 
 - (BOOL) endTransaction: (BOOL)commit {
-    Assert(_transactionLevel > 0);
-    BOOL ok = YES;
-    if (commit) {
-        LogTo(CBLDatabase, @"Commit transaction (level %d)", _transactionLevel);
-    } else {
-        LogTo(CBLDatabase, @"CANCEL transaction (level %d)", _transactionLevel);
-        if (![_fmdb executeUpdate: $sprintf(@"ROLLBACK TO tdb%d", _transactionLevel)]) {
-            Warn(@"Failed to rollback transaction!");
-            ok = NO;
-        }
+    LogTo(CBLDatabase, @"%@ transaction (level %d)",
+          (commit ? @"Commit" : @"Abort"), _fmdb.transactionLevel);
+
+    BOOL ok = [_fmdb endTransaction: commit];
+    if (!ok)
+        Warn(@"Failed to end transaction!");
+
+    if (!commit)
         [_changesToNotify removeAllObjects];
-    }
-    if (![_fmdb executeUpdate: $sprintf(@"RELEASE tdb%d", _transactionLevel)]) {
-        Warn(@"Failed to release transaction!");
-        ok = NO;
-    }
-    --_transactionLevel;
     [self postChangeNotifications];
     return ok;
 }
@@ -635,7 +628,7 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
         }
         if (status == kCBLStatusDBBusy) {
             // retry if locked out:
-            if (_transactionLevel > 1)
+            if (_fmdb.transactionLevel > 1)
                 break;
             if (++retries > kTransactionMaxRetries) {
                 Warn(@"%@: Db busy, too many retries, giving up", self);
@@ -671,7 +664,7 @@ NSString* const CBL_DatabaseWillBeDeletedNotification = @"CBL_DatabaseWillBeDele
     // This is a 'while' instead of an 'if' because when we finish posting notifications, there
     // might be new ones that have arrived as a result of notification handlers making document
     // changes of their own (the replicator manager will do this.) So we need to check again.
-    while (_transactionLevel == 0 && _isOpen && !_postingChangeNotifications
+    while (_fmdb.transactionLevel == 0 && _isOpen && !_postingChangeNotifications
             && _changesToNotify.count > 0)
     {
         _postingChangeNotifications = true; // Disallow re-entrant calls
@@ -1241,6 +1234,7 @@ static NSDictionary* makeRevisionHistoryDict(NSArray* history) {
 - (NSString*) winningRevIDOfDocNumericID: (SInt64)docNumericID
                                isDeleted: (BOOL*)outIsDeleted
                               isConflict: (BOOL*)outIsConflict // optional
+                                  status: (CBLStatus*)outStatus
 {
     Assert(docNumericID > 0);
     CBL_FMResultSet* r = [_fmdb executeQuery: @"SELECT revid, deleted FROM revs"
@@ -1248,6 +1242,11 @@ static NSDictionary* makeRevisionHistoryDict(NSArray* history) {
                                            " ORDER BY deleted asc, revid desc LIMIT 2",
                                           @(docNumericID)];
     NSString* revID = nil;
+    if (!r) {
+        *outStatus = self.lastDbStatus;
+        return nil;
+    }
+    *outStatus = kCBLStatusOK;
     if ([r next]) {
         revID = [r stringForColumnIndex: 0];
         *outIsDeleted = [r boolForColumnIndex: 1];
@@ -1569,9 +1568,12 @@ const CBLChangesOptions kDefaultCBLChangesOptions = {UINT_MAX, 0, NO, NO, YES};
                 SInt64 docNumericID = [self getDocNumericID: docID];
                 if (docNumericID > 0) {
                     BOOL deleted;
+                    CBLStatus status;
                     NSString* revID = [self winningRevIDOfDocNumericID: docNumericID
                                                              isDeleted: &deleted
-                                                            isConflict: NULL];
+                                                            isConflict: NULL
+                                                                status: &status];
+                    AssertEq(status, kCBLStatusOK);
                     if (revID)
                         value = $dict({@"rev", revID}, {@"deleted", $true});
                 }
@@ -1587,6 +1589,23 @@ const CBLChangesOptions kDefaultCBLChangesOptions = {UINT_MAX, 0, NO, NO, YES};
     }
 
     return rows;
+}
+
+- (void) postNotification: (NSNotification*)notification
+{
+    if (_dispatchQueue) {
+        // NSNotificationQueue is runloop-based, doesn't work on dispatch queues. (#364)
+        [self doAsync:^{
+            [[NSNotificationCenter defaultCenter] postNotification: notification];
+        }];
+    } else {
+        NSNotificationQueue* queue = [NSNotificationQueue defaultQueue];
+        [queue enqueueNotification: notification
+                      postingStyle: NSPostASAP
+                      coalesceMask: NSNotificationNoCoalescing
+                          forModes: @[NSRunLoopCommonModes]];
+    }
+
 }
 
 

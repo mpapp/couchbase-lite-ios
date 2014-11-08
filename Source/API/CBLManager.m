@@ -159,10 +159,7 @@ static CBLManager* sInstance;
                            options: options
                             shared: [[CBL_Shared alloc] init]];
     if (self) {
-        if ([NSThread isMainThread])
-            _dispatchQueue = dispatch_get_main_queue();
-        else
-            _thread = [NSThread currentThread];
+        _thread = [NSThread currentThread];
         // Create the directory but don't fail if it already exists:
         NSError* error;
         if (![[NSFileManager defaultManager] createDirectoryAtPath: _dir
@@ -209,6 +206,10 @@ static CBLManager* sInstance;
                                                 error: &error];
     Assert(dbm, @"Failed to create db manager at %@: %@", path, error);
     AssertEqual(dbm.directory, path);
+    AfterThisTest(^{
+        [dbm close];
+        [[NSFileManager defaultManager] removeItemAtPath: path error: NULL];
+    });
     return dbm;
 }
 
@@ -418,6 +419,7 @@ static CBLManager* sInstance;
         if (![db deleteDatabase: outError])
             return nil;
     } else {
+        AssertEq([_shared countForOpenedDatabase: name], 0u);
         if (![CBLDatabase deleteDatabaseFilesAtPath: [self pathForDatabaseNamed: name]
                                               error: outError])
             return nil;

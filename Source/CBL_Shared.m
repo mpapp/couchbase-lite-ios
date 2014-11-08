@@ -15,6 +15,7 @@
 
 #import "CBL_Shared.h"
 #import "CBL_Server.h"
+#import "MYReadWriteLock.h"
 
 
 @implementation CBL_Shared
@@ -39,6 +40,20 @@
 {
     [_backgroundServer close];
 }
+
+- (BOOL) isDatabaseOpened: (NSString*)dbName {
+    @synchronized(self) {
+        return [_openDatabaseNames containsObject: dbName];
+    }
+}
+
+#if DEBUG
+- (NSUInteger) countForOpenedDatabase: (NSString*)dbName {
+    @synchronized(self) {
+        return [_openDatabaseNames countForObject: dbName];
+    }
+}
+#endif
 
 - (void) openedDatabase: (NSString*)dbName {
     @synchronized(self) {
@@ -95,6 +110,18 @@
     }
 }
 
+- (MYReadWriteLock*) lockForDatabaseNamed: (NSString*)dbName {
+    @synchronized(self) {
+        MYReadWriteLock* lock = [self valueForType: @"lock" name: @"" inDatabaseNamed: dbName];
+        if (!lock) {
+            lock = [[MYReadWriteLock alloc] init];
+            lock.name = $sprintf(@"DB lock for %@", dbName);
+            [self setValue: lock forType: @"lock" name: @"" inDatabaseNamed: dbName];
+        }
+        return lock;
+    }
+}
+
 - (void) forgetDatabaseNamed: (NSString*)dbName {
     NSUInteger iterations = 0;
     while(true) {
@@ -109,11 +136,5 @@
             Warn(@"%@: Still waiting to -forgetDatabaseNamed: \"%@\"", self, dbName);
     }
 }
-
-#if DEBUG
-- (NSUInteger) countForOpenedDatabase: (NSString*)dbName {
-    return [_openDatabaseNames countForObject: dbName];
-}
-#endif
 
 @end

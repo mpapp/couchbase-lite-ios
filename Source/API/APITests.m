@@ -153,8 +153,6 @@ TestCase(API_CreateDocument) {
     CAssertEqual(doc2.currentRevision.revisionID, currentRevisionID);
 
     CAssertNil([db existingDocumentWithID: @"b0gus"]);
-
-    closeTestDB(db);
 }
 
 
@@ -165,8 +163,6 @@ TestCase(API_ExistingDocument) {
     CBLDocument* doc = [db documentWithID: @"missing"];
     Assert(doc != nil);
     AssertNil([db existingDocumentWithID: @"missing"]);
-
-    closeTestDB(db);
 }
 
 
@@ -213,7 +209,6 @@ TestCase(API_CreateRevisions) {
     CBLSavedRevision* rev3 = [newRev save: &error];
     CAssert(rev3);
     CAssertEqual(rev3.userProperties, newRev.userProperties);
-    closeTestDB(db);
 }
 
 TestCase(API_RevisionIdEquivalentRevisions) {
@@ -248,7 +243,6 @@ TestCase(API_RevisionIdEquivalentRevisions) {
     // since both rev2a and rev2b have same content, they should have
     // the same rev ids.
     CAssertEqual(rev2a.revisionID, rev2b.revisionID);
-    
 }
 
 TestCase(API_CreateNewRevisions) {
@@ -323,8 +317,6 @@ TestCase(API_CreateNewRevisions) {
     CAssertEqual([doc getLeafRevisions: &error], @[rev3]);
     CBLDocument* doc2 = db[doc.documentID];
     CAssertEq(doc2, doc);
-
-    closeTestDB(db);
 }
 
 #if 0
@@ -361,7 +353,6 @@ TestCase(API_SaveMultipleDocuments) {
         CAssertEqual([doc.currentRevision.properties objectForKey: @"misc"],
                              @"updated!");
     }
-    closeTestDB(db);
 }
 
 
@@ -386,7 +377,6 @@ TestCase(API_SaveMultipleUnsavedDocuments) {
         CAssertEqual([doc.currentRevision.properties objectForKey: @"order"],
                              [NSNumber numberWithInt: i]);
     }
-    closeTestDB(db);
 }
 
 
@@ -410,7 +400,6 @@ TestCase(API_DeleteMultipleDocuments) {
     }
     
     CAssertEq([db getDocumentCount], (NSInteger)0);
-    closeTestDB(db);
 }
 #endif
 
@@ -439,7 +428,6 @@ TestCase(API_DeleteDocument) {
     // currentRevision is inconsistent with a freshly-loaded CBLDocument's behavior, where if the
     // document was previously deleted its currentRevision will initially be nil. (#265)
     CAssertNil(doc.currentRevision);
-    closeTestDB(db);
 }
 
 
@@ -454,7 +442,6 @@ TestCase(API_PurgeDocument) {
     
     CBLDocument* redoc = [db _cachedDocumentWithID:doc.documentID];
     CAssert(!redoc);
-    closeTestDB(db);
 }
 
 TestCase(API_Validation) {
@@ -476,7 +463,6 @@ TestCase(API_Validation) {
     CAssert(![doc putProperties: properties error: &error]);
     CAssertEq(error.code, 403);
     //CAssertEqual(error.localizedDescription, @"forbidden: uncool"); //TODO: Not hooked up yet
-    closeTestDB(db);
 }
 
 TestCase(API_AllDocuments) {
@@ -506,7 +492,6 @@ TestCase(API_AllDocuments) {
         n++;
     }
     CAssertEq(n, kNDocs);
-    closeTestDB(db);
 }
 
 
@@ -534,50 +519,10 @@ TestCase(API_LocalDocs) {
     CAssert(![db deleteLocalDocumentWithID: @"dock" error: &error],
             @"Second delete should have failed");
     CAssertEq(error.code, kCBLStatusNotFound);
-    closeTestDB(db);
 }
 
-#pragma mark - HISTORY
 
-TestCase(API_History) {
-    CBLDatabase* db = createEmptyDB();
-    NSMutableDictionary* properties = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                @"test06_History", @"testName",
-                                @1, @"tag",
-                                nil];
-    CBLDocument* doc = createDocumentWithProperties(db, properties);
-    NSString* rev1ID = [doc.currentRevisionID copy];
-    Log(@"1st revision: %@", rev1ID);
-    CAssert([rev1ID hasPrefix: @"1-"], @"1st revision looks wrong: '%@'", rev1ID);
-    CAssertEqual(doc.userProperties, properties);
-    properties = doc.properties.mutableCopy;
-    properties[@"tag"] = @2;
-    CAssert(![properties isEqual: doc.properties]);
-    NSError* error;
-    CAssert([doc putProperties: properties error: &error]);
-    NSString* rev2ID = doc.currentRevisionID;
-    Log(@"2nd revision: %@", rev2ID);
-    CAssert([rev2ID hasPrefix: @"2-"], @"2nd revision looks wrong: '%@'", rev2ID);
-
-    NSArray* revisions = [doc getRevisionHistory: &error];
-    Log(@"Revisions = %@", revisions);
-    CAssertEq(revisions.count, 2u);
-    
-    CBLSavedRevision* rev1 = revisions[0];
-    CAssertEqual(rev1.revisionID, rev1ID);
-    NSDictionary* gotProperties = rev1.properties;
-    CAssertEqual(gotProperties[@"tag"], @1);
-    
-    CBLSavedRevision* rev2 = revisions[1];
-    CAssertEqual(rev2.revisionID, rev2ID);
-    CAssertEq(rev2, doc.currentRevision);
-    gotProperties = rev2.properties;
-    CAssertEqual(gotProperties[@"tag"], @2);
-    
-    CAssertEqual([doc getConflictingRevisions: &error], @[rev2]);
-    CAssertEqual([doc getLeafRevisions: &error], @[rev2]);
-    closeTestDB(db);
-}
+#pragma mark - Conflict
 
 
 TestCase(API_Conflict) {
@@ -618,38 +563,36 @@ TestCase(API_Conflict) {
     AssertEq(revs.count, 2u);
     AssertEqual(revs[0], defaultRev);
     AssertEqual(revs[1], otherRev);
-    
-    closeTestDB(db);
 }
 
+
 TestCase(API_Resolve_Conflict) {
-    
     RequireTestCase(API_History);
     CBLDatabase* db = createEmptyDB();
     CBLDocument* doc = createDocumentWithProperties(db, @{@"foo": @"bar"});
     CBLSavedRevision* rev1 = doc.currentRevision;
-    
+
     NSError* error;
-    
+
     AssertEq([[doc getLeafRevisions: &error] count], 1u);
     AssertEq([[doc getConflictingRevisions: &error] count], 1u);
     CAssertNil(error);
-    
+
     NSMutableDictionary* properties = doc.properties.mutableCopy;
     properties[@"tag"] = @2;
-    
+
     CBLSavedRevision* rev2a = [doc putProperties: properties error: &error];
-    
+
     properties = rev1.properties.mutableCopy;
     properties[@"tag"] = @3;
     CBLUnsavedRevision* newRev = [rev1 createRevision];
     newRev.properties = properties;
     CBLSavedRevision* rev2b = [newRev saveAllowingConflict: &error];
     CAssert(rev2b, @"Failed to create a a conflict: %@", error);
-    
+
     CAssertEqual([doc getConflictingRevisions: &error], (@[rev2b, rev2a]));
     CAssertEqual([doc getLeafRevisions: &error], (@[rev2b, rev2a]));
-    
+
     CBLSavedRevision* defaultRev, *otherRev;
     if ([rev2a.revisionID compare: rev2b.revisionID] > 0) {
         defaultRev = rev2a; otherRev = rev2b;
@@ -657,14 +600,14 @@ TestCase(API_Resolve_Conflict) {
         defaultRev = rev2b; otherRev = rev2a;
     }
     AssertEqual(doc.currentRevision, defaultRev);
-    
+
     [defaultRev deleteDocument:&error];
     CAssertNil(error);
     AssertEq([[doc getConflictingRevisions: &error] count], 1u);
     CAssertNil(error);
     AssertEq([[doc getLeafRevisions: &error] count], 2u);
     CAssertNil(error);
-    
+
     newRev = [otherRev createRevision];
     properties[@"tag"] = @4;
     newRev.properties = properties;
@@ -673,12 +616,83 @@ TestCase(API_Resolve_Conflict) {
     AssertEq([[doc getLeafRevisions: &error] count], 2u);
     AssertEq([[doc getConflictingRevisions: &error] count], 1u);
     AssertEqual(doc.currentRevision, newRevSaved);
-    
-    closeTestDB(db);
-
 }
 
 
+TestCase(API_CreateIdenticalParentContentRevisions) {
+    NSMutableDictionary *props = [NSMutableDictionary
+                                  dictionaryWithDictionary:@{@"foo": @"bar"}];
+
+    CBLDatabase* db = createEmptyDB();
+    CBLDocument* doc = createDocumentWithProperties(db, props);
+    CBLSavedRevision* rev = doc.currentRevision;
+
+    NSError* error;
+    CBLUnsavedRevision* unsavedRev1 = [rev createRevision];
+    [unsavedRev1 setProperties: props];
+    CBLSavedRevision* savedRev1 = [unsavedRev1 saveAllowingConflict: &error];
+    CAssertNil(error);
+
+    CBLUnsavedRevision* unsavedRev2 = [rev createRevision];
+    [unsavedRev2 setProperties: props];
+    CBLSavedRevision* savedRev2 = [unsavedRev2 saveAllowingConflict: &error];
+    CAssertNil(error);
+
+    AssertEqual(savedRev1.revisionID, savedRev2.revisionID);
+
+    NSArray* conflicts = [doc getConflictingRevisions: &error];
+    CAssertNil(error);
+    AssertEq(1u, [conflicts count]);
+
+    CBLQuery* query = [db createAllDocumentsQuery];
+    query.allDocsMode = kCBLOnlyConflicts;
+    CBLQueryEnumerator* result = [query run:&error];
+    CAssertNil(error);
+    AssertEq(0u, [result count]);
+}
+
+
+#pragma mark - HISTORY
+
+
+TestCase(API_History) {
+    CBLDatabase* db = createEmptyDB();
+    NSMutableDictionary* properties = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                @"test06_History", @"testName",
+                                @1, @"tag",
+                                nil];
+    CBLDocument* doc = createDocumentWithProperties(db, properties);
+    NSString* rev1ID = [doc.currentRevisionID copy];
+    Log(@"1st revision: %@", rev1ID);
+    CAssert([rev1ID hasPrefix: @"1-"], @"1st revision looks wrong: '%@'", rev1ID);
+    CAssertEqual(doc.userProperties, properties);
+    properties = doc.properties.mutableCopy;
+    properties[@"tag"] = @2;
+    CAssert(![properties isEqual: doc.properties]);
+    NSError* error;
+    CAssert([doc putProperties: properties error: &error]);
+    NSString* rev2ID = doc.currentRevisionID;
+    Log(@"2nd revision: %@", rev2ID);
+    CAssert([rev2ID hasPrefix: @"2-"], @"2nd revision looks wrong: '%@'", rev2ID);
+
+    NSArray* revisions = [doc getRevisionHistory: &error];
+    Log(@"Revisions = %@", revisions);
+    CAssertEq(revisions.count, 2u);
+    
+    CBLSavedRevision* rev1 = revisions[0];
+    CAssertEqual(rev1.revisionID, rev1ID);
+    NSDictionary* gotProperties = rev1.properties;
+    CAssertEqual(gotProperties[@"tag"], @1);
+    
+    CBLSavedRevision* rev2 = revisions[1];
+    CAssertEqual(rev2.revisionID, rev2ID);
+    CAssertEq(rev2, doc.currentRevision);
+    gotProperties = rev2.properties;
+    CAssertEqual(gotProperties[@"tag"], @2);
+    
+    CAssertEqual([doc getConflictingRevisions: &error], @[rev2]);
+    CAssertEqual([doc getLeafRevisions: &error], @[rev2]);
+}
 
 #pragma mark - ATTACHMENTS
 
@@ -735,7 +749,6 @@ TestCase(API_Attachments) {
     CAssert(!error);
     CAssert(rev4);
     CAssertEq([rev4.attachmentNames count], (NSUInteger)0);
-    closeTestDB(db);
 }
 
 #pragma mark - CHANGE TRACKING
@@ -759,7 +772,81 @@ TestCase(API_ChangeTracking) {
     CAssertEq(changeCount, 1);
     
     CAssertEq(db.lastSequenceNumber, 5);
-    closeTestDB(db);
+}
+
+
+static void lotsaWrites(CBLDatabase* db, NSUInteger nTransactions, NSUInteger nDocs) {
+    for (NSUInteger t = 1; t <= nTransactions; t++) {
+        BOOL ok = [db inTransaction: ^BOOL {
+            Log(@"Transaction #%u ...", (unsigned)t);
+            @autoreleasepool {
+                for (NSUInteger d = 1; d <= nDocs; d++) {
+                    CBLDocument* doc = [db createDocument];
+                    NSDictionary* props = @{@"transaction": @(t),
+                                            @"doc": @(d)};
+                    NSError* error;
+                    Assert([doc putProperties: props error: &error], @"put failed: %@", error);
+                }
+                return YES;
+            }
+        }];
+        Assert(ok, @"Transaction failed!");
+    }
+}
+
+static void lotsaReads(CBLDatabase* db, NSUInteger nReads) {
+    NSUInteger docCount = 0;
+    for (NSUInteger t = 1; t <= nReads; t++) {
+        @autoreleasepool {
+            usleep(10*1000);
+            NSArray* allDocs = [db getAllDocs: NULL];
+            NSUInteger newCount = allDocs.count;
+            //NSLog(@"Reader found %lu docs", (unsigned long)newCount);
+            Assert(allDocs, @"getAllDocs failed: status %d", db.lastDbError);
+            Assert(newCount >= docCount, @"Wrong doc count (used to be %ld)", (unsigned long)docCount);
+            docCount = newCount;
+        }
+    }
+}
+
+
+TestCase(API_ConcurrentWrites) {
+    const NSUInteger kNTransactions = 100;
+    const NSUInteger kNDocs = 100;
+    CBLManager* mgr = [CBLManager createEmptyAtTemporaryPath: @"API_ConcurrentWrites"];
+    CBLDatabase* db = [mgr databaseNamed: @"db" error: nil];
+    Log(@"Main thread writer: %@", db.fmdb);
+
+    CBLManager* bgmgr = [mgr copy];
+    dispatch_queue_t writingQueue = dispatch_queue_create("ConcurrentWritesTest",  NULL);
+    dispatch_async(writingQueue, ^{
+        CBLDatabase* bgdb = [bgmgr databaseNamed: @"db" error: nil];
+        Log(@"bg writer: %@", bgdb.fmdb);
+        lotsaWrites(bgdb, kNTransactions, kNDocs);
+    });
+
+    CBLManager* readQueueMgr = [mgr copy];
+    dispatch_queue_t readingQueue = dispatch_queue_create("reading",  NULL);
+    dispatch_async(readingQueue, ^{
+        CBLDatabase* bgdb = [readQueueMgr databaseNamed: @"db" error: nil];
+        Log(@"bg reader: %@", bgdb.fmdb);
+        lotsaReads(bgdb, kNTransactions);
+    });
+
+    CBLManager* readQueue2Mgr = [mgr copy];
+    dispatch_queue_t readingQueue2 = dispatch_queue_create("reading",  NULL);
+    dispatch_async(readingQueue2, ^{
+        CBLDatabase* bgdb = [readQueue2Mgr databaseNamed: @"db" error: nil];
+        Log(@"bg2 reader: %@", bgdb.fmdb);
+        lotsaReads(bgdb, kNTransactions);
+    });
+
+    lotsaWrites(db, kNTransactions, kNDocs);
+
+    // Wait for queue to finish the previous block:
+    dispatch_sync(writingQueue, ^{  });
+    dispatch_sync(readingQueue, ^{  });
+    dispatch_sync(readingQueue2, ^{  });
 }
 
 
@@ -789,10 +876,12 @@ TestCase(API) {
     RequireTestCase(API_PurgeDocument);
     RequireTestCase(API_AllDocuments);
     RequireTestCase(API_LocalDocs);
+    RequireTestCase(API_Conflict);
+    RequireTestCase(API_Resolve_Conflict);
+    RequireTestCase(API_CreateIdenticalParentContentRevisions);
     RequireTestCase(API_History);
     RequireTestCase(API_Attachments);
     RequireTestCase(API_ChangeTracking);
-
     RequireTestCase(API_View);
     RequireTestCase(API_Model);
     RequireTestCase(API_Replicator);
