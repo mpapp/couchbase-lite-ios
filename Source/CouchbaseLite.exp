@@ -82,8 +82,6 @@ __mdictof
 _$equal
 
 __box
-__RequireTestCase
-_gAllTestCases
 
 # GCDAsyncSocket
 #_GCDAsyncSocketSSLClientSideAuthenticate
@@ -107,8 +105,8 @@ _gAllTestCases
 .objc_class_name_CBLMultipartDocumentReader
 .objc_class_name_CBLMultipartWriter
 
-.objc_class_name_CBL_GCDAsyncSocket
-.objc_class_name_CBL_WebSocket
+.objc_class_name_GCDAsyncSocket
+.objc_class_name_WebSocket
 
 _OBJC_IVAR_$_CBLQueryOptions.skip
 _OBJC_IVAR_$_CBLQueryOptions.groupLevel
@@ -140,3 +138,7 @@ _CBL_ReplicatorProgressChangedNotification
 _CBL_ReplicatorStoppedNotification
 
 _kDefaultCBLChangesOptions
+
+# MyUtilities
+
+.objc_class_name_MYDynamicObject
