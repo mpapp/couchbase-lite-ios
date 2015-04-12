@@ -69,6 +69,7 @@
 {
     CBLOnMutateBlock _onMutate;
 }
+@dynamic firstName, lastName;
 
 - (void) setOnMutate:(CBLOnMutateBlock)onMutate {
     _onMutate = onMutate;

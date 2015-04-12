@@ -182,6 +182,7 @@
 
 
 @implementation CBL_MutableRevision
+@dynamic body, properties, asJSON, missing;
 
 - (void) setBody:(CBL_Body *)body {
     _body = body;

@@ -268,6 +268,8 @@
     NSMutableDictionary* _properties;
 }
 
+@dynamic isDeletion, userProperties;
+
 @synthesize parentRevisionID=_parentRevID, properties=_properties;
 
 - (instancetype) initWithDocument: (CBLDocument*)doc parent: (CBLSavedRevision*)parent {

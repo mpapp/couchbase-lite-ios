@@ -565,7 +565,6 @@ NSArray* CBL_RunloopModes;
     return attrs.fileSize + _attachments.totalDataSize;
 }
 
-
 - (NSString*) infoForKey: (NSString*)key {
     return [_fmdb stringForQuery: @"SELECT value FROM info WHERE key=?", key];
 }
@@ -584,6 +583,21 @@ NSArray* CBL_RunloopModes;
 
 - (NSString*) publicUUID {
     return [self infoForKey: @"publicUUID"];
+}
+
+- (CBLStatus) _checkpoint: (NSError**)outError {
+    int logFrameCount = 0;
+    int framesCheckpointed = 0;
+    int status = sqlite3_wal_checkpoint_v2(self.fmdb.sqliteHandle, NULL, SQLITE_CHECKPOINT_FULL, &logFrameCount, &framesCheckpointed);
+    
+    if (status != SQLITE_DONE) {
+        if (outError)
+            *outError = [self fmdbError];
+        
+        return [self lastDbStatus];
+    }
+    
+    return kCBLStatusOK;
 }
 
 #pragma mark - TRANSACTIONS & NOTIFICATIONS:

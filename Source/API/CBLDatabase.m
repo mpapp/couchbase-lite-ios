@@ -222,6 +222,15 @@ static void catchInBlock(void (^block)()) {
     return YES;
 }
 
+- (BOOL) checkpoint: (NSError**)outError {
+    __block CBLStatus status;
+    [self doSync:^{
+        status = [self _checkpoint:outError];
+    }];
+    
+    return status != kCBLStatusOK;
+}
+
 - (NSUInteger) maxRevTreeDepth {
     return [[self infoForKey: @"max_revs"] intValue] ?: kDefaultMaxRevs;
 }

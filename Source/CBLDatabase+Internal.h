@@ -133,6 +133,8 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
 - (NSString*) infoForKey: (NSString*)key;
 - (CBLStatus) setInfo: (id)info forKey: (NSString*)key;
 
+- (CBLStatus) _checkpoint: (NSError**)err;
+
 @property (nonatomic, readonly) NSString* privateUUID;
 @property (nonatomic, readonly) NSString* publicUUID;
 
