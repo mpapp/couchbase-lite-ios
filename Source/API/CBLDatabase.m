@@ -228,7 +228,7 @@ static void catchInBlock(void (^block)()) {
         status = [self _checkpoint:outError];
     }];
     
-    return status != kCBLStatusOK;
+    return status == kCBLStatusOK;
 }
 
 - (NSUInteger) maxRevTreeDepth {
