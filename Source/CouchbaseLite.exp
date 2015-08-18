@@ -1,6 +1,9 @@
 # Symbols exported by the framework
 
 # Public classes:
+.objc_class_name_CBLWebSocketChangeTracker
+.objc_class_name_CBLSocketChangeTracker
+.objc_class_name_CBLChangeTracker
 .objc_class_name_CBLAttachment
 .objc_class_name_CBLAuthenticator
 .objc_class_name_CBLDatabase
@@ -23,6 +26,9 @@
 .objc_class_name_CBLUnsavedRevision
 .objc_class_name_CBLView
 
+_OBJC_CLASS_$_CBLWebSocketChangeTracker
+_OBJC_CLASS_$_CBLSocketChangeTracker
+_OBJC_CLASS_$_CBLChangeTracker
 _OBJC_CLASS_$_CBLAttachment
 _OBJC_CLASS_$_CBLAuthenticator
 _OBJC_CLASS_$_CBLDatabase
