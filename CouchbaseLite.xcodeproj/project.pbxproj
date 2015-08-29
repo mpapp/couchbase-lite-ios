@@ -2957,7 +2957,7 @@
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0640;
 				TargetAttributes = {
 					275315D414ACF0A10065964D = {
 						DevelopmentTeam = N2Q372V7W2;
@@ -3823,7 +3823,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CBL_SOURCE_REVISION = "";
 				CBL_VERSION_STRING = 1.0;
 				CLANG_ENABLE_MODULES = YES;
@@ -3871,7 +3870,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F911CDC71800E9A2AB /* MYUtilities_Release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CBL_SOURCE_REVISION = "";
 				CBL_VERSION_STRING = 1.0;
 				CLANG_ENABLE_MODULES = YES;
@@ -3917,7 +3915,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -3945,7 +3942,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
 				DEPLOYMENT_POSTPROCESSING = YES;
@@ -4008,7 +4004,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -4048,7 +4043,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -4534,7 +4528,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -4700,7 +4693,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -4918,7 +4910,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CBL_SOURCE_REVISION = "";
 				CBL_VERSION_STRING = 1.0;
 				CLANG_ENABLE_MODULES = YES;
@@ -4966,7 +4957,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -5133,7 +5123,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
