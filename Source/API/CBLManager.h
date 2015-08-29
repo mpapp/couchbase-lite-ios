@@ -134,7 +134,7 @@ typedef struct CBLManagerOptions {
 /**
  *  A prefix used for Etag values when documents from this database are served over HTTP.
  */
-@property (readwrite) NSString *etagPrefix;
+@property (readwrite, copy) NSString *etagPrefix;
 
 @end
 
