@@ -3932,6 +3932,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -3960,6 +3961,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -4032,6 +4034,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -4069,6 +4072,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -4545,6 +4549,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -4720,6 +4725,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -4974,6 +4980,7 @@
 				);
 				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = framework;
@@ -5151,6 +5158,7 @@
 				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
 				PRODUCT_NAME = CouchbaseLiteListener;
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
