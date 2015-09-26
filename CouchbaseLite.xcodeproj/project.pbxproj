@@ -4912,6 +4912,838 @@
 			};
 			name = Testing;
 		};
+		5F5119BE1BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
+			buildSettings = {
+				CBL_SOURCE_REVISION = "";
+				CBL_VERSION_STRING = 1.0;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"CBL_VERSION_STRING=\"\\\"$(CBL_VERSION_STRING)-Debug\\\"\"",
+					"CBL_SOURCE_REVISION=\"\\\"$(CBL_SOURCE_REVISION)\\\"\"",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_FILE = "$(PRODUCT_NAME)_vers.c";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+				);
+			};
+			name = AppStoreDebug;
+		};
+		5F5119BF1BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
+				PRODUCT_NAME = CouchbaseLite;
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C01BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C11BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRELINK_FLAGS = "-objc_abi_version 2";
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C21BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-Mac/ShoppingDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "Couchbase Lite Demo";
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C31BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"CBLIS_NO_CHANGE_COALESCING=1",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Demo-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "CBL Test";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C41BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Empty App-Info.plist";
+				LD_GENERATE_MAP_FILE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Couchbase Lite Empty App";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C51BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"\"${SRCROOT}/vendor/CocoaHTTPServer/Vendor/CocoaLumberjack\"",
+				);
+				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
+				PRODUCT_NAME = CouchbaseLiteListener;
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C61BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C71BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/vendor/CocoaHTTPServer/Vendor/CocoaLumberjack/",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRELINK_FLAGS = "-objc_abi_version 2";
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C81BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/ @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStoreDebug;
+		};
+		5F5119C91BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "LiteServ App/LiteServ App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = LiteServ;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119CA1BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/CBLJSViewCompiler.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/vendor\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/CBLJSViewCompiler-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = AppStoreDebug;
+		};
+		5F5119CB1BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_TREAT_WARNINGS_AS_ERRORS = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
+			};
+			name = AppStoreDebug;
+		};
+		5F5119CC1BB751B2005E4A2E /* AppStoreDebug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStoreDebug;
+		};
+		5F5119DD1BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27F074F911CDC71800E9A2AB /* MYUtilities_Release.xcconfig */;
+			buildSettings = {
+				CBL_SOURCE_REVISION = "";
+				CBL_VERSION_STRING = 1.0;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = YES;
+				CLANG_WARN_OBJC_REPEATED_USE_OF_WEAK = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"CBL_VERSION_STRING=\"\\\"$(CBL_VERSION_STRING)\\\"\"",
+					"CBL_SOURCE_REVISION=\"\\\"$(CBL_SOURCE_REVISION)\\\"\"",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_FILE = "$(PRODUCT_NAME)_vers.c";
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+				);
+			};
+			name = AppStoreRelease;
+		};
+		5F5119DE1BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = Source/CouchbaseLite.exp;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
+				PRODUCT_NAME = CouchbaseLite;
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119DF1BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Source/CouchbaseLite-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E01BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				EXPORTED_SYMBOLS_FILE = Source/CouchbaseLite.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$SRCROOT/vendor/yajl/build/yajl-2.0.5/include",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRELINK_FLAGS = "-objc_abi_version 2";
+				PRODUCT_NAME = CouchbaseLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E11BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-Mac/ShoppingDemo-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				PRODUCT_NAME = "Couchbase Lite Demo";
+				VALID_ARCHS = x86_64;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E21BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Demo-Info.plist";
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "CBL Test";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E31BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Demo-iOS/iOS Demo-Prefix.pch";
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INFOPLIST_FILE = "Demo-iOS/iOS Empty App-Info.plist";
+				LD_GENERATE_MAP_FILE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "Couchbase Lite Empty App";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E41BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_VERSION = A;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode6-Beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"\"${SRCROOT}/vendor/CocoaHTTPServer/Vendor/CocoaLumberjack\"",
+				);
+				INFOPLIST_FILE = "Listener/CouchbaseLiteListener-Info.plist";
+				LD_DYLIB_INSTALL_NAME = "@rpath/$(EXECUTABLE_PATH)";
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLiteListener.modulemap";
+				PRODUCT_NAME = CouchbaseLiteListener;
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = YES;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E51BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)-ios-universal";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = mh_dylib;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E61BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = NO;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/CouchbaseLiteiOS.dst;
+				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/CouchbaseLitePrefix.h;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = YES;
+				GCC_WARN_SIGN_COMPARE = NO;
+				GENERATE_MASTER_OBJECT_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/vendor/CocoaHTTPServer/Vendor/CocoaLumberjack/",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRELINK_FLAGS = "-objc_abi_version 2";
+				PRODUCT_NAME = CouchbaseLiteListener;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E71BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/ @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E81BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				INFOPLIST_FILE = "LiteServ App/LiteServ App-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
+				PRODUCT_NAME = LiteServ;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119E91BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				COPY_PHASE_STRIP = YES;
+				DSTROOT = /tmp/CBLJSViewCompiler.dst;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/vendor\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Source/CBLJSViewCompiler-Prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStoreRelease;
+		};
+		5F5119EA1BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WARNING_CFLAGS = "";
+			};
+			name = AppStoreRelease;
+		};
+		5F5119EB1BB751C0005E4A2E /* AppStoreRelease */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = AppStoreRelease;
+		};
 		5F5865921AC8642D000DC9D4 /* Internal */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 27F074F811CDC71800E9A2AB /* MYUtilities_Debug.xcconfig */;
@@ -5524,9 +6356,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB923608733DC60010E9CD /* Debug */,
+				5F5119BE1BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865921AC8642D000DC9D4 /* Internal */,
 				5F4DF37C18E7839E00E7D65A /* Testing */,
 				1DEB923708733DC60010E9CD /* Release */,
+				5F5119DD1BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5535,9 +6369,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270B3E0C1489359100E0A926 /* Debug */,
+				5F5119BF1BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865931AC8642D000DC9D4 /* Internal */,
 				5F4DF37D18E7839E00E7D65A /* Testing */,
 				270B3E0D1489359100E0A926 /* Release */,
+				5F5119DE1BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5546,9 +6382,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				270FE0D214C5008C005FF647 /* Debug */,
+				5F5119C81BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659C1AC8642D000DC9D4 /* Internal */,
 				5F4DF38618E7839E00E7D65A /* Testing */,
 				270FE0D314C5008C005FF647 /* Release */,
+				5F5119E71BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5557,9 +6395,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275315E214ACF0A20065964D /* Debug */,
+				5F5119C51BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865991AC8642D000DC9D4 /* Internal */,
 				5F4DF38318E7839E00E7D65A /* Testing */,
 				275315E314ACF0A20065964D /* Release */,
+				5F5119E41BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5568,9 +6408,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27538F7817F13B04004C3BFD /* Debug */,
+				5F5119C91BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659D1AC8642D000DC9D4 /* Internal */,
 				5F4DF38718E7839E00E7D65A /* Testing */,
 				27538F7917F13B04004C3BFD /* Release */,
+				5F5119E81BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5579,9 +6421,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				275A29081649A54000B0D8EE /* Debug */,
+				5F5119CC1BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865A01AC8642D000DC9D4 /* Internal */,
 				5F4DF38A18E7839E00E7D65A /* Testing */,
 				275A29091649A54000B0D8EE /* Release */,
+				5F5119EB1BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5590,9 +6434,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27731F281495CFEF00815D67 /* Debug */,
+				5F5119C41BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865981AC8642D000DC9D4 /* Internal */,
 				5F4DF38218E7839E00E7D65A /* Testing */,
 				27731F291495CFEF00815D67 /* Release */,
+				5F5119E31BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5601,9 +6447,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B7C81492B83C00A817AD /* Debug */,
+				5F5119C11BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865951AC8642D000DC9D4 /* Internal */,
 				5F4DF37F18E7839E00E7D65A /* Testing */,
 				27B0B7C91492B83C00A817AD /* Release */,
+				5F5119E01BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5612,9 +6460,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B7F21492BB6C00A817AD /* Debug */,
+				5F5119C01BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865941AC8642D000DC9D4 /* Internal */,
 				5F4DF37E18E7839E00E7D65A /* Testing */,
 				27B0B7F31492BB6C00A817AD /* Release */,
+				5F5119DF1BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5623,9 +6473,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27B0B82A1492C16300A817AD /* Debug */,
+				5F5119C31BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865971AC8642D000DC9D4 /* Internal */,
 				5F4DF38118E7839E00E7D65A /* Testing */,
 				27B0B82B1492C16300A817AD /* Release */,
+				5F5119E21BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5634,9 +6486,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27C706B0148864BA00F0F099 /* Debug */,
+				5F5119C21BB751B2005E4A2E /* AppStoreDebug */,
 				5F5865961AC8642D000DC9D4 /* Internal */,
 				5F4DF38018E7839E00E7D65A /* Testing */,
 				27C706B1148864BA00F0F099 /* Release */,
+				5F5119E11BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5645,9 +6499,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				27FA59EC179EEACA0043460A /* Debug */,
+				5F5119CB1BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659F1AC8642D000DC9D4 /* Internal */,
 				5F4DF38918E7839E00E7D65A /* Testing */,
 				27FA59ED179EEACA0043460A /* Release */,
+				5F5119EA1BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5656,9 +6512,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				792867C8178DE01900248AF0 /* Debug */,
+				5F5119CA1BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659E1AC8642D000DC9D4 /* Internal */,
 				5F4DF38818E7839E00E7D65A /* Testing */,
 				792867C9178DE01900248AF0 /* Release */,
+				5F5119E91BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5667,9 +6525,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA023B6214BCA94C008184BB /* Debug */,
+				5F5119C71BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659B1AC8642D000DC9D4 /* Internal */,
 				5F4DF38518E7839E00E7D65A /* Testing */,
 				DA023B6314BCA94C008184BB /* Release */,
+				5F5119E61BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -5678,9 +6538,11 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DA147C3414BCAC3B0052DA4D /* Debug */,
+				5F5119C61BB751B2005E4A2E /* AppStoreDebug */,
 				5F58659A1AC8642D000DC9D4 /* Internal */,
 				5F4DF38418E7839E00E7D65A /* Testing */,
 				DA147C3514BCAC3B0052DA4D /* Release */,
+				5F5119E51BB751C0005E4A2E /* AppStoreRelease */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
