@@ -122,7 +122,6 @@ NSString* const kCBLDocumentChangeNotification = @"CBLDocumentChange";
     return _currentRevision;
 }
 
-
 - (void) forgetCurrentRevision {
     _currentRevision = nil;
 }
