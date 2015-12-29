@@ -19,3 +19,6 @@
 [submodule "vendor/WebSockets-Cocoa"]
 	path = vendor/WebSockets-Cocoa
 	url = git@github.com:mpapp/WebSockets-Cocoa.git
+[submodule "Carthage/Checkouts/CocoaLumberjack"]
+	path = Carthage/Checkouts/CocoaLumberjack
+	url = https://github.com/CocoaLumberjack/CocoaLumberjack.git
