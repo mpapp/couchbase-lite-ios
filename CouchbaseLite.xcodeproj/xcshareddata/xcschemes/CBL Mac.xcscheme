@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27B0B7E61492BB6B00A817AD"
+               BlueprintIdentifier = "270B3DE91489359000E0A926"
                BuildableName = "CouchbaseLite.framework"
-               BlueprintName = "CBL iOS"
+               BlueprintName = "CBL Mac"
                ReferencedContainer = "container:CouchbaseLite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27B0B7E61492BB6B00A817AD"
+            BlueprintIdentifier = "270B3DE91489359000E0A926"
             BuildableName = "CouchbaseLite.framework"
-            BlueprintName = "CBL iOS"
+            BlueprintName = "CBL Mac"
             ReferencedContainer = "container:CouchbaseLite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "270B3DE91489359000E0A926"
+            BuildableName = "CouchbaseLite.framework"
+            BlueprintName = "CBL Mac"
+            ReferencedContainer = "container:CouchbaseLite.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
