@@ -625,8 +625,9 @@
 		5F268CEE194E4AA300F3535E /* CollectionUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F0749B11CD5B4F00E9A2AB /* CollectionUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F9AB12A19BB30E6001EB437 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0749E11CD5B4F00E9A2AB /* Test.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5F9AB12B19BB30E7001EB437 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F0749E11CD5B4F00E9A2AB /* Test.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		5F9E9D4C1C33CB63002A5F4D /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9E9D4B1C33CB63002A5F4D /* CocoaLumberjack.framework */; };
+		5F9E9D4D1C33CB88002A5F4D /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F9E9D4B1C33CB63002A5F4D /* CocoaLumberjack.framework */; };
 		5FB3D9B4190B29E90042A63D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FB3D9B3190B29E90042A63D /* Security.framework */; };
-		5FDD5A7518ECCB620040CC27 /* Lumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDD5A7018ECCB410040CC27 /* Lumberjack.framework */; };
 		5FE1841F18BA2DC200C733A9 /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2753156314ACEFC90065964D /* HTTPAsyncFileResponse.m */; };
 		5FE1842018BA2E2500C733A9 /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2753156214ACEFC90065964D /* HTTPAsyncFileResponse.h */; };
 		5FE1860E18BAA31800C733A9 /* Logging.h in Headers */ = {isa = PBXBuildFile; fileRef = 27F0751111CDC7F900E9A2AB /* Logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -825,34 +826,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 275315D414ACF0A10065964D;
 			remoteInfo = TouchDBListener;
-		};
-		5FB83FA7194D0566008D26AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DCB3185014EB418E001CFBEE;
-			remoteInfo = Lumberjack;
-		};
-		5FDD5A6F18ECCB410040CC27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DCB3185114EB418E001CFBEE;
-			remoteInfo = Lumberjack;
-		};
-		5FDD5A7118ECCB410040CC27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DCB318CA14ED6C3B001CFBEE;
-			remoteInfo = FmwkTest;
-		};
-		5FDD5A7318ECCB560040CC27 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = DCB3185014EB418E001CFBEE;
-			remoteInfo = Lumberjack;
 		};
 		DA147C3814BCAC670052DA4D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1405,8 +1378,8 @@
 		27FAEF0D164C8ADB00A3C0C2 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		27FAEF0E164C8ADB00A3C0C2 /* icon~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon~ipad.png"; sourceTree = "<group>"; };
 		27FFE20817BD28080040AE60 /* CBL_Replicator+Backgrounding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CBL_Replicator+Backgrounding.m"; sourceTree = "<group>"; };
+		5F9E9D4B1C33CB63002A5F4D /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = vendor/CocoaHTTPServer/Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		5FB3D9B3190B29E90042A63D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Lumberjack.xcodeproj; path = vendor/CocoaHTTPServer/Vendor/CocoaLumberjack/Xcode/LumberjackFramework/Desktop/Lumberjack.xcodeproj; sourceTree = "<group>"; };
 		792867BF178DE01900248AF0 /* libCBLJSViewCompiler.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCBLJSViewCompiler.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		792867C3178DE01900248AF0 /* CBLJSViewCompiler-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CBLJSViewCompiler-Prefix.pch"; path = "../Source/CBLJSViewCompiler-Prefix.pch"; sourceTree = "<group>"; };
 		792867CB178DE03E00248AF0 /* CBLJSFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLJSFunction.h; sourceTree = "<group>"; };
@@ -1436,6 +1409,7 @@
 				27103F8814EA076600DF7209 /* SystemConfiguration.framework in Frameworks */,
 				27DB90DD14DB250500FC7118 /* libz.dylib in Frameworks */,
 				270B3E1E1489385C00E0A926 /* Foundation.framework in Frameworks */,
+				5F9E9D4C1C33CB63002A5F4D /* CocoaLumberjack.framework in Frameworks */,
 				270B3E1D1489384700E0A926 /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1456,7 +1430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FDD5A7518ECCB620040CC27 /* Lumberjack.framework in Frameworks */,
+				5F9E9D4D1C33CB88002A5F4D /* CocoaLumberjack.framework in Frameworks */,
 				D927483A18E9774B0003FD53 /* CouchbaseLite.framework in Frameworks */,
 				275315F814ACF2500065964D /* CoreServices.framework in Frameworks */,
 				275315F314ACF1C20065964D /* Foundation.framework in Frameworks */,
@@ -1572,7 +1546,6 @@
 		08FB7794FE84155DC02AAC07 /* CouchLite */ = {
 			isa = PBXGroup;
 			children = (
-				5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */,
 				270B3E28148940C000E0A926 /* README.md */,
 				27DA4300158F9D7A00F9E7B5 /* API */,
 				08FB7795FE84155DC02AAC07 /* Source */,
@@ -2221,6 +2194,7 @@
 		27C70696148864BA00F0F099 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5F9E9D4B1C33CB63002A5F4D /* CocoaLumberjack.framework */,
 				5FB3D9B3190B29E90042A63D /* Security.framework */,
 				AA1776BB1857AE4D00CB01A3 /* CoreData.framework */,
 				27538F8E17F15057004C3BFD /* ScriptingBridge.framework */,
@@ -2477,15 +2451,6 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
-		5FDD5A6B18ECCB410040CC27 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5FDD5A7018ECCB410040CC27 /* Lumberjack.framework */,
-				5FDD5A7218ECCB410040CC27 /* FmwkTest.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		792867C1178DE01900248AF0 /* CBLJSViewCompiler */ = {
 			isa = PBXGroup;
 			children = (
@@ -2735,7 +2700,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5FB83FA8194D0566008D26AF /* PBXTargetDependency */,
 			);
 			name = "CBL Mac";
 			productName = ToyCouch;
@@ -2772,7 +2736,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				5FDD5A7418ECCB560040CC27 /* PBXTargetDependency */,
 				275315FE14ACF87F0065964D /* PBXTargetDependency */,
 			);
 			name = "CBL Listener Mac";
@@ -2983,12 +2946,6 @@
 			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* CouchLite */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5FDD5A6B18ECCB410040CC27 /* Products */;
-					ProjectRef = 5FDD5A6A18ECCB410040CC27 /* Lumberjack.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				270B3DE91489359000E0A926 /* CBL Mac */,
@@ -3008,23 +2965,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5FDD5A7018ECCB410040CC27 /* Lumberjack.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Lumberjack.framework;
-			remoteRef = 5FDD5A6F18ECCB410040CC27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5FDD5A7218ECCB410040CC27 /* FmwkTest.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = FmwkTest.app;
-			remoteRef = 5FDD5A7118ECCB410040CC27 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		270B3DE81489359000E0A926 /* Resources */ = {
@@ -3758,16 +3698,6 @@
 			target = 275315D414ACF0A10065964D /* CBL Listener Mac */;
 			targetProxy = 27E11F1C14AD25570006B340 /* PBXContainerItemProxy */;
 		};
-		5FB83FA8194D0566008D26AF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Lumberjack;
-			targetProxy = 5FB83FA7194D0566008D26AF /* PBXContainerItemProxy */;
-		};
-		5FDD5A7418ECCB560040CC27 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Lumberjack;
-			targetProxy = 5FDD5A7318ECCB560040CC27 /* PBXContainerItemProxy */;
-		};
 		DA147C3914BCAC670052DA4D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DA023B2614BCA94C008184BB /* Listener iOS Library */;
@@ -3920,6 +3850,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3949,6 +3883,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Source/CouchbaseLite.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4013,6 +3951,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4055,6 +3997,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4537,6 +4483,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4705,6 +4655,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4968,6 +4922,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5137,6 +5095,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5404,6 +5366,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Source/CouchbaseLite.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5561,6 +5527,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -5800,6 +5770,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -5969,6 +5943,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXPORTED_SYMBOLS_FILE = Listener/CouchbaseLiteListener.exp;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/vendor/CocoaHTTPServer/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;

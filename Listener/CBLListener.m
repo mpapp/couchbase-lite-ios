@@ -153,7 +153,7 @@ static NSArray* GetIPv4Addresses(void);
 @implementation CBL_MYDDLogger
 
 - (void) logMessage:(DDLogMessage *)logMessage {
-    Log(@"%@", logMessage->logMsg);
+    Log(@"%@", logMessage.message);
 }
 
 @end
