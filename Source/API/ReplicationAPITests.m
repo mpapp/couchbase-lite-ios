@@ -368,8 +368,8 @@ TestCase(ReplicationWithEncoding) {
     CBLReplication* repl = [db createPushReplication: remoteDbURL];
     repl.createTarget = YES;
 
-    SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionKey), sEncryptionKey);
-    SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionIV), sEncryptionIV);
+    Assert(SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionKey), sEncryptionKey) == 0);
+    Assert(SecRandomCopyBytes(kSecRandomDefault, sizeof(sEncryptionIV), sEncryptionIV) == 0);
 
     repl.propertiesTransformationBlock = ^NSDictionary*(NSDictionary* props) {
         NSData* cleartext = [props[@"secret"] dataUsingEncoding: NSUTF8StringEncoding];
