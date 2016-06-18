@@ -3869,6 +3869,15 @@
 				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -3903,6 +3912,15 @@
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -4502,6 +4520,15 @@
 				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Testing;
@@ -4941,6 +4968,15 @@
 				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = AppStoreDebug;
@@ -5386,6 +5422,15 @@
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = AppStoreRelease;
@@ -5789,6 +5834,15 @@
 				MODULEMAP_FILE = "${SRCROOT}/CouchbaseLite.modulemap";
 				PRODUCT_NAME = CouchbaseLite;
 				SKIP_INSTALL = YES;
+				WARNING_CFLAGS = (
+					"-Wall",
+					"-Wformat-security",
+					"-Wshorten-64-to-32",
+					"-Wmissing-declarations",
+					"-Woverriding-method-mismatch",
+					"-Wbool-conversion",
+					"-Wno-unused-result",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Internal;
