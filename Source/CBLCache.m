@@ -15,9 +15,12 @@
 
 #import "CBLCache.h"
 
+// FIXME: Don't rely on this customisation.
 
-static const NSUInteger kDefaultRetainLimit = 50;
+// FIXME: @mz2: This big retain limit is done because Manuscripts for which this fork is done does not unreference model objects after deletion and has thorough undo support which exposes to potential data races because of re-loading new documents for already referenced model objects that are resurrected as part of re-doing (through the undo system) from cache.
 
+static const NSUInteger kDefaultRetainLimit = 500000;
+static const NSUInteger kDefaultWeakMapLimit = 100000;
 
 @implementation CBLCache
 
@@ -35,7 +38,7 @@ static const NSUInteger kDefaultRetainLimit = 50;
         // key/value pairs when a value is dealloced.
         _map = [[NSMapTable alloc] initWithKeyOptions: NSMapTableStrongMemory
                                          valueOptions: NSMapTableWeakMemory
-                                             capacity: 100];
+                                             capacity: kDefaultWeakMapLimit];
 #else
         // Construct a CFDictionary that doesn't retain its values. It does _not_ automatically
         // remove dealloced values, so we'll have to do it manually in -resourceBeingDeallocated.
@@ -43,7 +46,7 @@ static const NSUInteger kDefaultRetainLimit = 50;
         valueCB.retain = NULL;
         valueCB.release = NULL;
         _map = (NSMutableDictionary*)CFBridgingRelease(CFDictionaryCreateMutable(
-                       NULL, 100, &kCFCopyStringDictionaryKeyCallBacks, &valueCB));
+                       NULL, kDefaultWeakMapLimit, &kCFCopyStringDictionaryKeyCallBacks, &valueCB));
 #endif
         if (retainLimit > 0) {
             _cache = [[NSCache alloc] init];

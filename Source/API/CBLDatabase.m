@@ -39,7 +39,8 @@
 
 
 // Size of document cache: max # of otherwise-unreferenced docs that will be kept in memory.
-#define kDocRetainLimit 50
+// FIXME: @mz2: This big retain limit is done because Manuscripts for which this fork is done does not unreference model objects after deletion and has thorough undo support which exposes to potential data races because of re-loading new documents for already referenced model objects that are resurrected as part of re-doing (through the undo system) from cache.
+#define kDocRetainLimit 500000
 
 // Default value for maxRevTreeDepth, the max rev depth to preserve in a prune operation
 #define kDefaultMaxRevs 20
