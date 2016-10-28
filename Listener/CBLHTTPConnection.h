@@ -6,9 +6,9 @@
 //  Copyright (c) 2011-2013 Couchbase, Inc. All rights reserved.
 //
 
-#import "HTTPConnection.h"
-@class CBLListener;
+#import <CocoaHTTPServerKit/CocoaHTTPServerKit.h>
 
+@class CBLListener;
 
 /** Custom CouchbaseLite subclass of CocoaHTTPServer's HTTPConnection class. */
 @interface CBLHTTPConnection : HTTPConnection

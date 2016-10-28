@@ -22,8 +22,7 @@
 #import "CBL_Server.h"
 #import "CBL_Router.h"
 
-#import "HTTPMessage.h"
-#import "HTTPDataResponse.h"
+#import <CocoaHTTPServerKit/CocoaHTTPServerKit.h>
 
 #import "Test.h"
 

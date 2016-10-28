@@ -20,8 +20,7 @@
 #import "CBL_Server.h"
 #import "Logging.h"
 
-#import "HTTPServer.h"
-#import "HTTPLogging.h"
+#import <CocoaHTTPServerKit/CocoaHTTPServerKit.h>
 
 #import <sys/types.h>
 #import <sys/socket.h>

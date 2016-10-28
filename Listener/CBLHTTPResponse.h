@@ -6,7 +6,8 @@
 //  Copyright (c) 2011-2013 Couchbase, Inc. All rights reserved.
 //
 
-#import "HTTPResponse.h"
+#import <CocoaHTTPServerKit/CocoaHTTPServerKit.h>
+
 @class CBLHTTPConnection, CBL_Router, CBLResponse;
 
 
