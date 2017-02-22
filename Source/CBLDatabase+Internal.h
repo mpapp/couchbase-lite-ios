@@ -135,6 +135,8 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
 
 - (CBLStatus) _checkpoint: (NSError**)err;
 
+- (NSArray<NSString *> *) _integrityCheck: (NSError**)err;
+
 @property (nonatomic, readonly) NSString* privateUUID;
 @property (nonatomic, readonly) NSString* publicUUID;
 

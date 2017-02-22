@@ -585,6 +585,19 @@ NSArray* CBL_RunloopModes;
     return [self infoForKey: @"publicUUID"];
 }
 
+- (NSArray *)_integrityCheck: (NSError**)outError {
+    CBL_FMResultSet *resultSet = [self.fmdb executeQuery:@"PRAGMA integrity_check"];
+    
+    NSMutableArray *results = [NSMutableArray new];
+    while ([resultSet next]) {
+        NSString *str = [resultSet stringForColumnIndex:0];
+        [results addObject: str];
+    }
+    [resultSet close];
+    
+    return results;
+}
+
 - (CBLStatus) _checkpoint: (NSError**)outError {
     int logFrameCount = 0;
     int framesCheckpointed = 0;

@@ -72,6 +72,11 @@ typedef BOOL (^CBLFilterBlock) (CBLSavedRevision* revision, NSDictionary* params
 /** Ensure the database contents have been flushed to disk. */
 - (BOOL) checkpoint: (NSError**)outError;
 
+/** Return with the results of an integrity check on the database. 
+  * Each row in the returned list of strings represents an issue that the integrity checked. 
+  * An empty array is therefore a sign of success. */
+- (NSArray<NSString *> *)integrityCheck: (NSError**)outError;
+
 /** The maximum depth of a document's revision tree (or, max length of its revision history.)
     Revisions older than this limit will be deleted during a -compact: operation. 
     Smaller values save space, at the expense of making document conflicts somewhat more likely. */

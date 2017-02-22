@@ -232,6 +232,14 @@ static void catchInBlock(void (^block)()) {
     return status == kCBLStatusOK;
 }
 
+- (NSArray *)integrityCheck:(NSError *__autoreleasing *)outError {
+    __block NSArray *results;
+    [self doSync:^{
+        results = [self _integrityCheck:outError];
+    }];
+    return results;
+}
+
 - (NSUInteger) maxRevTreeDepth {
     return [[self infoForKey: @"max_revs"] intValue] ?: kDefaultMaxRevs;
 }
