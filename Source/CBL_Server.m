@@ -122,7 +122,7 @@
 }
 
 
-- (void) queue: (void(^)())block {
+- (void) queue: (void(^)(void))block {
     Assert(_serverThread, @"-queue: called after -close");
     MYOnThread(_serverThread, block);
 }

@@ -312,7 +312,7 @@ static CBLManager* sInstance;
 #pragma mark - BACKGROUND TASKS:
 
 
-- (void) doAsync: (void (^)())block {
+- (void) doAsync: (void (^)(void))block {
     if (_dispatchQueue)
         dispatch_async(_dispatchQueue, block);
     else

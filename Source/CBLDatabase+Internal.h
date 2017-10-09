@@ -145,7 +145,7 @@ extern const CBLChangesOptions kDefaultCBLChangesOptions;
     If the block returns kCBLStatusDBBusy, the block will also be retried after a short delay;
     if 10 retries all fail, the kCBLStatusDBBusy will be returned to the caller.
     Any exception raised by the block will be caught and treated as kCBLStatusException. */
-- (CBLStatus) _inTransaction: (CBLStatus(^)())block;
+- (CBLStatus) _inTransaction: (CBLStatus(^)(void))block;
 
 - (void) notifyChange: (CBLDatabaseChange*)change;
 

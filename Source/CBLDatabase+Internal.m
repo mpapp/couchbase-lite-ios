@@ -639,7 +639,7 @@ NSArray* CBL_RunloopModes;
     return ok;
 }
 
-- (CBLStatus) _inTransaction: (CBLStatus(^)())block {
+- (CBLStatus) _inTransaction: (CBLStatus(^)(void))block {
     CBLStatus status;
     int retries = 0;
     do {

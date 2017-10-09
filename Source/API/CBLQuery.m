@@ -177,25 +177,25 @@ static NSString* keyPathForQueryRow(NSString* keyPath);
 
 - (CBLQueryOptions*) queryOptions {
     CBLQueryOptions* options = [CBLQueryOptions new];
-    options.startKey = _startKey,
-    options.endKey = _endKey,
-    options.startKeyDocID = _startKeyDocID,
-    options.endKeyDocID = _endKeyDocID,
-    options.keys = _keys,
-    options.fullTextQuery = _fullTextQuery,
-    options->fullTextSnippets = _fullTextSnippets,
-    options->fullTextRanking = _fullTextRanking,
-    options->bbox = (_isGeoQuery ? &_boundingBox : NULL),
-    options->skip = (unsigned)_skip,
-    options->limit = (unsigned)_limit,
-    options->reduce = !_mapOnly,
-    options->reduceSpecified = YES,
-    options->groupLevel = (unsigned)_groupLevel,
-    options->descending = _descending,
-    options->includeDocs = _prefetch,
-    options->updateSeq = YES,
-    options->inclusiveEnd = YES,
-    options->allDocsMode = _allDocsMode,
+    options.startKey = _startKey;
+    options.endKey = _endKey;
+    options.startKeyDocID = _startKeyDocID;
+    options.endKeyDocID = _endKeyDocID;
+    options.keys = _keys;
+    options.fullTextQuery = _fullTextQuery;
+    options->fullTextSnippets = _fullTextSnippets;
+    options->fullTextRanking = _fullTextRanking;
+    options->bbox = (_isGeoQuery ? &_boundingBox : NULL);
+    options->skip = (unsigned)_skip;
+    options->limit = (unsigned)_limit;
+    options->reduce = !_mapOnly;
+    options->reduceSpecified = YES;
+    options->groupLevel = (unsigned)_groupLevel;
+    options->descending = _descending;
+    options->includeDocs = _prefetch;
+    options->updateSeq = YES;
+    options->inclusiveEnd = YES;
+    options->allDocsMode = _allDocsMode;
     options->indexUpdateMode = _indexUpdateMode;
     options.filter = _postFilter;
     return options;

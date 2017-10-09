@@ -339,7 +339,7 @@
 }
 
 
-+ (BOOL) saveModels: (NSArray*)models error: (NSError**)outError {
++ (BOOL) saveModels: (NSArray*)models error: (NSError * __autoreleasing *)outError {
     if (models.count == 0)
         return YES;
     CBLDatabase* db = [(CBLModel*)models[0] database];
@@ -480,7 +480,9 @@
 + (Class) itemClassForArrayProperty: (NSString*)property {
     SEL sel = NSSelectorFromString([property stringByAppendingString: @"ItemClass"]);
     if ([self respondsToSelector: sel]) {
-        return (Class)objc_msgSend(self, sel);
+        typedef Class (*send_type)(Class, SEL);
+        send_type func = (send_type)objc_msgSend;
+        return func(self, sel);
     }
     return Nil;
 }

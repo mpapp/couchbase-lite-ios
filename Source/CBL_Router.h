@@ -14,7 +14,7 @@
 typedef CBLStatus (^OnAccessCheckBlock)(CBLDatabase*, NSString *docID, SEL action);
 typedef void (^OnResponseReadyBlock)(CBLResponse*);
 typedef void (^OnDataAvailableBlock)(NSData* data, BOOL finished);
-typedef void (^OnFinishedBlock)();
+typedef void (^OnFinishedBlock)(void);
 
 
 @interface CBL_Router : NSObject

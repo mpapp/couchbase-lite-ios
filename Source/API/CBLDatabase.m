@@ -128,14 +128,14 @@ static id<CBLFilterCompiler> sFilterCompiler;
 }
 
 
-static void catchInBlock(void (^block)()) {
+static void catchInBlock(void (^block)(void)) {
     @try {
         block();
     }catchAndReport(@"-[CBLDatabase doAsync:]");
 }
 
 
-- (void) doAsync: (void (^)())block {
+- (void) doAsync: (void (^)(void))block {
     if (_dispatchQueue)
         dispatch_async(_dispatchQueue, ^{catchInBlock(block);});
     else
@@ -143,7 +143,7 @@ static void catchInBlock(void (^block)()) {
 }
 
 
-- (void) doSync: (void (^)())block {
+- (void) doSync: (void (^)(void))block {
     if (_dispatchQueue)
         dispatch_sync(_dispatchQueue, ^{catchInBlock(block);});
     else
@@ -151,7 +151,7 @@ static void catchInBlock(void (^block)()) {
 }
 
 
-- (void) doAsyncAfterDelay: (NSTimeInterval)delay block: (void (^)())block {
+- (void) doAsyncAfterDelay: (NSTimeInterval)delay block: (void (^)(void))block {
     if (_dispatchQueue) {
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
         dispatch_after(popTime, _dispatchQueue, block);
@@ -162,7 +162,7 @@ static void catchInBlock(void (^block)()) {
 }
 
 
-- (BOOL) waitFor: (BOOL (^)())block {
+- (BOOL) waitFor: (BOOL (^)(void))block {
     if (_dispatchQueue) {
         Warn(@"-[CBLDatabase waitFor:] cannot be used with dispatch queues, only runloops");
         return NO;
@@ -223,7 +223,7 @@ static void catchInBlock(void (^block)()) {
     return YES;
 }
 
-- (BOOL) checkpoint: (NSError**)outError {
+- (BOOL) checkpoint: (NSError * __autoreleasing *)outError {
     __block CBLStatus status;
     [self doSync:^{
         status = [self _checkpoint:outError];
