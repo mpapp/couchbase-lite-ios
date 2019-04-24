@@ -19,7 +19,7 @@
 
 /** Key identifying a data blob. This happens to be a SHA-1 digest. */
 typedef struct CBLBlobKey {
-    uint8_t bytes[SHA_DIGEST_LENGTH];
+    uint8_t bytes[CC_SHA1_DIGEST_LENGTH];
 } CBLBlobKey;
 
 
@@ -60,7 +60,7 @@ typedef struct CBLBlobKey {
 
 
 typedef struct {
-    uint8_t bytes[MD5_DIGEST_LENGTH];
+    uint8_t bytes[CC_MD5_DIGEST_LENGTH];
 } CBLMD5Key;
 
 
@@ -71,8 +71,8 @@ typedef struct {
     NSString* _tempPath;
     NSFileHandle* _out;
     UInt64 _length;
-    SHA_CTX _shaCtx;
-    MD5_CTX _md5Ctx;
+    CC_SHA1_CTX _shaCtx;
+    CC_MD5_CTX _md5Ctx;
     CBLBlobKey _blobKey;
     CBLMD5Key _MD5Digest;
 }

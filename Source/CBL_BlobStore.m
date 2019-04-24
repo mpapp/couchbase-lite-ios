@@ -61,10 +61,10 @@
 + (CBLBlobKey) keyForBlob: (NSData*)blob {
     NSCParameterAssert(blob);
     CBLBlobKey key;
-    SHA_CTX ctx;
-    SHA1_Init(&ctx);
-    SHA1_Update(&ctx, blob.bytes, blob.length);
-    SHA1_Final(key.bytes, &ctx);
+    CC_SHA1_CTX ctx;
+    CC_SHA1_Init(&ctx);
+    CC_SHA1_Update(&ctx, blob.bytes, (CC_LONG)blob.length);
+    CC_SHA1_Final(key.bytes, &ctx);
     return key;
 }
 
@@ -253,8 +253,8 @@
     self = [super init];
     if (self) {
         _store = store;
-        SHA1_Init(&_shaCtx);
-        MD5_Init(&_md5Ctx);
+        CC_SHA1_Init(&_shaCtx);
+        CC_MD5_Init(&_md5Ctx);
                 
         // Open a temporary file in the store's temporary directory: 
         NSString* filename = [CBLCreateUUID() stringByAppendingPathExtension: @"blobtmp"];
@@ -296,10 +296,10 @@
 
 - (void) appendData: (NSData*)data {
     [_out writeData: data];
-    NSUInteger dataLen = data.length;
+    CC_LONG dataLen = (CC_LONG)data.length;
     _length += dataLen;
-    SHA1_Update(&_shaCtx, data.bytes, dataLen);
-    MD5_Update(&_md5Ctx, data.bytes, dataLen);
+    CC_SHA1_Update(&_shaCtx, data.bytes, dataLen);
+    CC_MD5_Update(&_md5Ctx, data.bytes, dataLen);
 }
 
 - (void) closeFile {
@@ -310,8 +310,8 @@
 - (void) finish {
     Assert(_out, @"Already finished");
     [self closeFile];
-    SHA1_Final(_blobKey.bytes, &_shaCtx);
-    MD5_Final(_MD5Digest.bytes, &_md5Ctx);
+    CC_SHA1_Final(_blobKey.bytes, &_shaCtx);
+    CC_MD5_Final(_MD5Digest.bytes, &_md5Ctx);
 }
 
 - (NSString*) MD5DigestString {

@@ -302,6 +302,7 @@ int main (int argc, const char * argv[]) {
             tooltip = @"Syncing data...";
             break;
         default:
+            value = 0;
             NSAssert(NO, @"Illegal mode");
             break;
     }

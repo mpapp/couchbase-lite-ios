@@ -98,33 +98,33 @@
     // Generate a digest for this revision based on the previous revision ID, document JSON,
     // and attachment digests. This doesn't need to be secure; we just need to ensure that this
     // code consistently generates the same ID given equivalent revisions.
-    MD5_CTX ctx;
-    unsigned char digestBytes[MD5_DIGEST_LENGTH];
-    MD5_Init(&ctx);
+    CC_MD5_CTX ctx;
+    unsigned char digestBytes[CC_MD5_DIGEST_LENGTH];
+    CC_MD5_Init(&ctx);
     
     NSData* prevIDUTF8 = [prevID dataUsingEncoding: NSUTF8StringEncoding];
-    NSUInteger length = prevIDUTF8.length;
+    CC_LONG length = (CC_LONG)prevIDUTF8.length;
     if (length > 0xFF)
         return nil;
     uint8_t lengthByte = length & 0xFF;
-    MD5_Update(&ctx, &lengthByte, 1);       // prefix with length byte
+    CC_MD5_Update(&ctx, &lengthByte, 1);       // prefix with length byte
     if (length > 0)
-        MD5_Update(&ctx, prevIDUTF8.bytes, length);
+        CC_MD5_Update(&ctx, prevIDUTF8.bytes, length);
     
     uint8_t deletedByte = rev.deleted != NO;
-    MD5_Update(&ctx, &deletedByte, 1);
+    CC_MD5_Update(&ctx, &deletedByte, 1);
     
     for (NSString* attName in [attachments.allKeys sortedArrayUsingSelector: @selector(compare:)]) {
         CBL_Attachment* attachment = attachments[attName];
-        MD5_Update(&ctx, &attachment->blobKey, sizeof(attachment->blobKey));
+        CC_MD5_Update(&ctx, &attachment->blobKey, sizeof(attachment->blobKey));
     }
     
-    MD5_Update(&ctx, json.bytes, json.length);
-    MD5_Final(digestBytes, &ctx);
+    CC_MD5_Update(&ctx, json.bytes, (CC_LONG)json.length);
+    CC_MD5_Final(digestBytes, &ctx);
 
-    char hex[11 + 2*MD5_DIGEST_LENGTH + 1];
+    char hex[11 + 2*CC_MD5_DIGEST_LENGTH + 1];
     char *dst = hex + sprintf(hex, "%u-", generation+1);
-    for( size_t i=0; i<MD5_DIGEST_LENGTH; i+=1 )
+    for( size_t i=0; i<CC_MD5_DIGEST_LENGTH; i+=1 )
         dst += sprintf(dst,"%02x", digestBytes[i]); // important: generates lowercase!
     return [[NSString alloc] initWithBytes: hex
                                     length: dst - hex
